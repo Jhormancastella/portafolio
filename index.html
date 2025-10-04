@@ -1,10 +1,9 @@
 <!DOCTYPE html>
-
 <html lang="es">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Portafolio de Jhorman Jesus Castellanos Morales: Desarrollador Web Junior, Fotógrafo y Técnico en Sistemas.">
   <title>Portafolio | Jhorman Jesus Castellanos Morales</title>
   
   <link rel="icon" type="image/x-icon" href="https://res.cloudinary.com/dipv76dpn/image/upload/v1757879361/Rosy/fstj3avfegrq8heo9xha.png">
@@ -12,681 +11,727 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
     /* Variables para temas */
-:root {
-  /* Tema oscuro (por defecto) */
-  --bg-primary: #121212;
-  --bg-secondary: #1e1e1e;
-  --text-primary: #e0e0e0;
-  --text-secondary: #a0a0a0;
-  --accent: #ffd700;
-  --card-bg: #2a2a2a;
-  --border: #3a3a3a;
-  --shadow: rgba(0, 0, 0, 0.3);
-
-   /* Tema claro */
-   --light-bg-primary: #ffffff;
-   --light-bg-secondary: #f5f5f5;
-   --light-text-primary: #333333;
-   --light-text-secondary: #666666;
-   --light-accent: #f9ca24;
-   --light-card-bg: #ffffff;
-   --light-border: #e0e0e0;
-   --light-shadow: rgba(0, 0, 0, 0.1);
- 
-}
-.portfolio-buttons {
-  display: flex;
-  gap: 10px;
-  margin-top: 15px;
-  flex-wrap: wrap;
-}
-
-.portfolio-buttons button {
-  padding: 8px 12px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-weight: 500;
-  transition: all 0.3s ease;
-}
-
-.btn-download {
-  background-color: #4CAF50;
-  color: white;
-}
-
-.btn-download:hover {
-  background-color: #3e8e41;
-}
-
-.btn-clone {
-  background-color: #2196F3;
-  color: white;
-}
-
-.btn-clone:hover {
-  background-color: #0b7dda;
-}
-
-.btn-visit {
-  background-color: #ff9800;
-  color: white;
-}
-
-.btn-visit:hover {
-  background-color: #e68a00;
-}
-
-/* Mantener los estilos anteriores y agregar: */
-
-/* Matrix Canvas Background */
-#matrixCanvas {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: -1;
-  opacity: 0.1;
-  pointer-events: none;
-}
-
-/* Ajustar el fondo para que sea transparente y permita ver el efecto matrix */
-body {
-  background-color: rgba(18, 18, 18, 0.95);
-}
-
-.navbar,
-.portfolio,
-.contact,
-.footer {
- 
-  backdrop-filter: blur(5px);
-}
-
-/* Resto de los estilos se mantienen igual */
-
-
-
-/* Estilos base */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-html {
-  scroll-behavior: smooth;
-}
-
-body {
-  font-family: "Inter", sans-serif;
-  line-height: 1.6;
-  background-color: var(--bg-primary);
-  color: var(--text-primary);
-}
-
-/* Contenedor */
-.container {
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 20px;
-}
-
-/* Botón de cambio de tema */
-.theme-toggle {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  z-index: 1000;
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  border: none;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.5rem;
-  transition: background-color 0.3s;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-}
-
-.light-theme .theme-toggle {
-  background-color: var(--light-bg-secondary);
-  color: var(--light-text-primary);
-}
-
-.dark-theme .theme-toggle {
-  background-color: var(--dark-bg-secondary);
-  color: var(--dark-text-primary);
-}
-
-.light-theme .fa-sun {
-  display: none;
-}
-
-.light-theme .fa-moon {
-  display: block;
-}
-
-.dark-theme .fa-sun {
-  display: block;
-}
-
-.dark-theme .fa-moon {
-  display: none;
-}
-
-
-/* Navbar */
-.navbar {
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  padding: 1rem 0;
-  background-color: var(--bg-primary);
-  box-shadow: 0 2px 10px var(--shadow);
-}
-
-.navbar-content {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.logo {
-  font-size: 1.5rem;
-  font-weight: 700;
-  text-decoration: none;
-  color: var(--text-primary);
-}
-
-.nav-menu {
-  display: flex;
-  gap: 2rem;
-}
-
-.nav-link {
-  text-decoration: none;
-  font-weight: 500;
-  color: var(--text-primary);
-  transition: color 0.3s;
-}
-
-.nav-link:hover {
-  color: var(--accent);
-}
-
-.menu-toggle {
-  display: none;
-  background: none;
-  border: none;
-  font-size: 1.5rem;
-  cursor: pointer;
-  color: var(--text-primary);
-}
-
-.mobile-menu {
-  display: none;
-  flex-direction: column;
-  padding: 1rem;
-  background-color: var(--bg-secondary);
-}
-
-.mobile-menu .nav-link {
-  padding: 0.5rem 0;
-}
-
-/* Hero Section */
-.hero {
-  padding: 5rem 0;
-}
-
-.hero-content {
-  display: flex;
-  align-items: center;
-  gap: 2rem;
-}
-
-.hero-text {
-  flex: 1;
-}
-
-.subtitle {
-  margin-bottom: 0.5rem;
-  color: var(--text-secondary);
-}
-
-.title {
-  font-size: 3rem;
-  font-weight: 700;
-  margin-bottom: 0.5rem;
-  color: var(--text-primary);
-}
-
-.name {
-  font-size: 2.5rem;
-  font-weight: 700;
-  margin-bottom: 1rem;
-  color: var(--accent);
-}
-
-.description {
-  margin-bottom: 1.5rem;
-  max-width: 600px;
-  color: var(--text-secondary);
-}
-
-.hero-links {
-  display: flex;
-  gap: 1rem;
-  flex-wrap: wrap;
-}
-
-.btn {
-  display: inline-block;
-  padding: 0.75rem 1.5rem;
-  border-radius: 2rem;
-  font-weight: 600;
-  text-decoration: none;
-  transition: background-color 0.3s, color 0.3s;
-}
-
-.btn-primary {
-  background-color: var(--accent);
-  color: #000000;
-}
-
-.btn-primary:hover {
-  background-color: #e0b820;
-}
-
-.btn-full {
-  width: 100%;
-  text-align: center;
-}
-
-.social-link {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  text-decoration: none;
-  color: var(--text-secondary);
-  transition: color 0.3s;
-}
-
-.social-link:hover {
-  color: var(--accent);
-}
-/* Contenedor fijo 200×200 minimo */
-.hero-image {
-  width: 400px;
-  height: 400px;
-  overflow: hidden;          /* recorta lo que sobre */
-  border-radius: 8px;        /* opcional: esquinas redondeadas */
-  margin: 0 auto;            /* centrado si lo necesitas */
-}
-
-/* Imagen que siempre llena el cuadrado y se recorta al centro */
-.hero-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;         /* recorte sin deformar */
-  object-position: center;   /* centra el área visible */
-  display: block;
-}
-
-/* Portfolio Section */
-.portfolio {
-  padding: 5rem 0;
-  
-}
-
-.section-title {
-  font-size: 2.5rem;
-  font-weight: 700;
-  text-align: center;
-  margin-bottom: 0.5rem;
-  color: var(--text-primary);
-}
-
-.section-subtitle {
-  text-align: center;
-  margin-bottom: 3rem;
-  color: var(--text-secondary);
-}
-
-.portfolio-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 2rem;
-}
-
-.portfolio-item {
-  border-radius: 0.5rem;
-  overflow: hidden;
-  background-color: var(--card-bg);
-  box-shadow: 0 4px 10px var(--shadow);
-  transition: transform 0.3s, box-shadow 0.3s;
-}
-
-.portfolio-item:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 20px var(--shadow);
-}
-
-.portfolio-item a {
-  text-decoration: none;
-  color: inherit;
-}
-
-.portfolio-image {
-  height: 250px; /* Aumentado para acomodar mejor la imagen del juego */
-  overflow: hidden;
-}
-
-.portfolio-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-  transition: transform 0.3s;
-}
-
-.portfolio-item:hover .portfolio-image img {
-  transform: scale(1.05);
-}
-
-.portfolio-content {
-  padding: 1.5rem;
-}
-
-.portfolio-title {
-  font-size: 1.25rem;
-  font-weight: 600;
-  margin-bottom: 0.5rem;
-  color: var(--text-primary);
-}
-
-.portfolio-description {
-  color: var(--text-secondary);
-}
-
-/* Estilos para las etiquetas de plataforma */
-.portfolio-tags {
-  display: flex;
-  gap: 0.5rem;
-  margin-top: 1rem;
-}
-
-.tag {
-  display: inline-block;
-  padding: 0.25rem 0.75rem;
-  border-radius: 1rem;
-  font-size: 0.875rem;
-  font-weight: 500;
-  background-color: var(--accent);
-  color: var(--bg-primary);
-}
-
-/* About Section */
-.about {
-  padding: 5rem 0;
-}
-
-.about-content {
-  max-width: 800px;
-  margin: 0 auto;
-}
-
-.about-text {
-  font-size: 1.1rem;
-  margin-bottom: 1.5rem;
-  color: var(--text-secondary);
-}
-
-/* Contact Section */
-.contact {
-  padding: 5rem 0;
-  /* background-color: var(--bg-secondary); */
-}
-
-.contact-form-container {
-  max-width: 600px;
-  margin: 0 auto;
-}
-
-.contact-form {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-}
-
-.form-group {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-
-.form-group label {
-  font-weight: 500;
-  color: var(--text-primary);
-}
-
-.form-group input,
-.form-group textarea {
-  padding: 0.75rem;
-  border-radius: 0.25rem;
-  border: 1px solid var(--border);
-  background-color: var(--bg-primary);
-  color: var(--text-primary);
-  font-family: inherit;
-  font-size: 1rem;
-}
-
-.form-group input:focus,
-.form-group textarea:focus {
-  outline: none;
-  border-color: var(--accent);
-}
-
-/* Footer */
-.footer {
-  padding: 3rem 0 1.5rem;
-  background-color: var(--bg-primary);
-}
-
-.footer-content {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 2rem;
-}
-
-.footer-title {
-  font-size: 1.25rem;
-  font-weight: 600;
-  margin-bottom: 0.5rem;
-}
-
-.footer-subtitle {
-  opacity: 0.8;
-}
-
-.footer-social {
-  display: flex;
-  gap: 1.5rem;
-}
-
-.footer-social-link {
-  font-size: 1.5rem;
-  color: var(--text-primary);
-  transition: color 0.3s;
-}
-
-.footer-social-link:hover {
-  color: var(--accent);
-}
-
-.footer-bottom {
-  text-align: center;
-  padding-top: 1.5rem;
-  border-top: 1px solid var(--border);
-  opacity: 0.7;
-  font-size: 0.9rem;
-}
-
-/* Media Queries */
-@media (max-width: 768px) {
-  .nav-menu {
-    display: none;
-  }
-
-  .menu-toggle {
-    display: block;
-  }
-
-  .mobile-menu.active {
-    display: flex;
-  }
-
-  .hero-content {
-    flex-direction: column-reverse;
-    text-align: center;
-  }
-
-  .hero-links {
-    justify-content: center;
-  }
-
-  .container {
-    padding: 0 15px;
-  }
-
-  .navbar {
-    padding: 0.5rem 0;
-  }
-
-  .logo {
-    font-size: 1.2rem;
-  }
-
-  .menu-toggle {
-    font-size: 1.2rem;
-  }
-
-  .mobile-menu {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    right: 0;
-    background-color: var(--bg-secondary);
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  }
-
-  .mobile-menu .nav-link {
-    padding: 1rem;
-    text-align: center;
-    border-bottom: 1px solid var(--border);
-  }
-
-  .mobile-menu .nav-link:last-child {
-    border-bottom: none;
-  }
-
-  .footer-content {
-    flex-direction: column;
-    gap: 1.5rem;
-    text-align: center;
-  }
-}
-
-@media (max-width: 576px) {
-  .title {
-    font-size: 2.5rem;
-  }
-
-  .name {
-    font-size: 2rem;
-  }
-
-  .section-title {
-    font-size: 2rem;
-  }
-}
-
-@media (max-width: 430px) {
-  .hero {
-    padding: 3rem 0;
-  }
-
-  .hero-content {
-    flex-direction: column-reverse;
-    text-align: center;
-  }
-
-  .hero-image {
-    margin-bottom: 2rem;
-  }
-
-  .hero-image img {
-    max-width: 80%;
-  }
-
-  .title {
-    font-size: 2.5rem;
-  }
-
-  .name {
-    font-size: 2rem;
-  }
-
-  .description {
-    font-size: 1rem;
-  }
-
-  .hero-links {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .btn,
-  .social-link {
-    width: 100%;
-    margin-bottom: 1rem;
-    justify-content: center;
-  }
-
-  .portfolio-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .section-title {
-    font-size: 2rem;
-  }
-
-  .about-text {
-    font-size: 1rem;
-  }
-
-  .contact-form-container {
-    padding: 0 1rem;
-  }
-
-  .footer-content {
-    flex-direction: column;
-    text-align: center;
-  }
-
-  .footer-social {
-    margin-top: 1rem;
-    justify-content: center;
-  }
-}
-
-
+    :root {
+      /* Tema oscuro (por defecto) */
+      --bg-primary: #121212;
+      --bg-secondary: #1e1e1e;
+      --text-primary: #e0e0e0;
+      --text-secondary: #a0a0a0;
+      --accent: #ffd700;
+      --card-bg: #2a2a2a;
+      --border: #3a3a3a;
+      --shadow: rgba(0, 0, 0, 0.3);
+
+      /* Tema claro */
+      --light-bg-primary: #ffffff;
+      --light-bg-secondary: #f5f5f5;
+      --light-text-primary: #333333;
+      --light-text-secondary: #666666;
+      --light-accent: #f9ca24;
+      --light-card-bg: #ffffff;
+      --light-border: #e0e0e0;
+      --light-shadow: rgba(0, 0, 0, 0.1);
+    }
+
+    .portfolio-buttons {
+      display: flex;
+      gap: 10px;
+      margin-top: 15px;
+      flex-wrap: wrap;
+    }
+
+    .portfolio-buttons button {
+      padding: 8px 12px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
+
+    .btn-download {
+      background-color: #4CAF50;
+      color: white;
+    }
+
+    .btn-download:hover {
+      background-color: #3e8e41;
+    }
+
+    .btn-clone {
+      background-color: #2196F3;
+      color: white;
+    }
+
+    .btn-clone:hover {
+      background-color: #0b7dda;
+    }
+
+    .btn-visit {
+      background-color: #ff9800;
+      color: white;
+    }
+
+    .btn-visit:hover {
+      background-color: #e68a00;
+    }
+
+    /* Matrix Canvas Background */
+    #matrixCanvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      opacity: 0.1;
+      pointer-events: none;
+    }
+
+    /* Ajustar el fondo para que sea transparente y permita ver el efecto matrix */
+    body {
+      background-color: rgba(18, 18, 18, 0.95);
+    }
+
+    .navbar,
+    .portfolio,
+    .skills,
+    .contact,
+    .footer {
+      backdrop-filter: blur(5px);
+    }
+
+    /* Estilos base */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "Inter", sans-serif;
+      line-height: 1.6;
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+    }
+
+    /* Contenedor */
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* Botón de cambio de tema */
+    .theme-toggle {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 1000;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      transition: background-color 0.3s;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .light-theme .theme-toggle {
+      background-color: var(--light-bg-secondary);
+      color: var(--light-text-primary);
+    }
+
+    .dark-theme .theme-toggle {
+      background-color: var(--bg-secondary);
+      color: var(--text-primary);
+    }
+
+    .light-theme .fa-sun {
+      display: none;
+    }
+
+    .light-theme .fa-moon {
+      display: block;
+    }
+
+    .dark-theme .fa-sun {
+      display: block;
+    }
+
+    .dark-theme .fa-moon {
+      display: none;
+    }
+
+    /* Navbar */
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      padding: 1rem 0;
+      background-color: var(--bg-primary);
+      box-shadow: 0 2px 10px var(--shadow);
+    }
+
+    .navbar-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 700;
+      text-decoration: none;
+      color: var(--text-primary);
+    }
+
+    .nav-menu {
+      display: flex;
+      gap: 2rem;
+    }
+
+    .nav-link {
+      text-decoration: none;
+      font-weight: 500;
+      color: var(--text-primary);
+      transition: color 0.3s;
+    }
+
+    .nav-link:hover {
+      color: var(--accent);
+    }
+
+    .menu-toggle {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: var(--text-primary);
+    }
+
+    .mobile-menu {
+      display: none;
+      flex-direction: column;
+      padding: 1rem;
+      background-color: var(--bg-secondary);
+    }
+
+    .mobile-menu .nav-link {
+      padding: 0.5rem 0;
+    }
+
+    /* Hero Section */
+    .hero {
+      padding: 5rem 0;
+    }
+
+    .hero-content {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    .hero-text {
+      flex: 1;
+    }
+
+    .subtitle {
+      margin-bottom: 0.5rem;
+      color: var(--text-secondary);
+    }
+
+    .title {
+      font-size: 3rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      color: var(--text-primary);
+    }
+
+    .name {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      color: var(--accent);
+    }
+
+    .description {
+      margin-bottom: 1.5rem;
+      max-width: 600px;
+      color: var(--text-secondary);
+    }
+
+    .hero-links {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 0.75rem 1.5rem;
+      border-radius: 2rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    .btn-primary {
+      background-color: var(--accent);
+      color: #000000;
+    }
+
+    .btn-primary:hover {
+      background-color: #e0b820;
+    }
+
+    .btn-full {
+      width: 100%;
+      text-align: center;
+    }
+
+    .social-link {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      text-decoration: none;
+      color: var(--text-secondary);
+      transition: color 0.3s;
+    }
+
+    .social-link:hover {
+      color: var(--accent);
+    }
+
+    /* Contenedor fijo 400x400 */
+    .hero-image {
+      width: 400px;
+      height: 400px;
+      overflow: hidden;
+      border-radius: 8px;
+      margin: 0 auto;
+    }
+
+    .hero-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+    }
+
+    /* Portfolio Section */
+    .portfolio {
+      padding: 5rem 0;
+    }
+
+    .section-title {
+      font-size: 2.5rem;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 0.5rem;
+      color: var(--text-primary);
+    }
+
+    .section-subtitle {
+      text-align: center;
+      margin-bottom: 3rem;
+      color: var(--text-secondary);
+    }
+
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+
+    .portfolio-item {
+      border-radius: 0.5rem;
+      overflow: hidden;
+      background-color: var(--card-bg);
+      box-shadow: 0 4px 10px var(--shadow);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .portfolio-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px var(--shadow);
+    }
+
+    .portfolio-item a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .portfolio-image {
+      height: 250px;
+      overflow: hidden;
+    }
+
+    .portfolio-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      transition: transform 0.3s;
+    }
+
+    .portfolio-item:hover .portfolio-image img {
+      transform: scale(1.05);
+    }
+
+    .portfolio-content {
+      padding: 1.5rem;
+    }
+
+    .portfolio-title {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      color: var(--text-primary);
+      cursor: pointer; /* Indica que es clickeable */
+    }
+
+    .portfolio-description {
+      color: var(--text-secondary);
+      display: none; /* Initially hidden */
+    }
+
+    .portfolio-description.active {
+      display: block;
+    }
+
+    /* Estilos para las etiquetas de plataforma */
+    .portfolio-tags {
+      display: flex;
+      gap: 0.5rem;
+      margin-top: 1rem;
+    }
+
+    .tag {
+      display: inline-block;
+      padding: 0.25rem 0.75rem;
+      border-radius: 1rem;
+      font-size: 0.875rem;
+      font-weight: 500;
+      background-color: var(--accent);
+      color: var(--bg-primary);
+    }
+
+    /* Skills Section */
+    .skills {
+      padding: 5rem 0;
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .skill-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background-color: var(--card-bg);
+      padding: 1rem;
+      border-radius: 0.5rem;
+      box-shadow: 0 4px 10px var(--shadow);
+      transition: transform 0.3s;
+      position: relative;
+    }
+
+    .skill-item:hover {
+      transform: translateY(-5px);
+    }
+
+    .skill-icon {
+      font-size: 2.5rem;
+      color: var(--accent);
+      margin-bottom: 0.5rem;
+    }
+
+    .skill-name {
+      font-weight: 500;
+      color: var(--text-primary);
+    }
+
+    /* Fallback para Photoshop si el ícono no carga */
+    .skill-item:has(.fa-paint-brush)::before {
+      content: 'PS';
+      font-size: 1.5rem;
+      color: var(--accent);
+      display: none;
+    }
+
+    .skill-item .fa-paint-brush:not(:defined)::before {
+      display: block;
+    }
+
+    /* About Section */
+    .about {
+      padding: 5rem 0;
+    }
+
+    .about-content {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .about-text {
+      font-size: 1.1rem;
+      margin-bottom: 1.5rem;
+      color: var(--text-secondary);
+    }
+
+    /* Contact Section */
+    .contact {
+      padding: 5rem 0;
+    }
+
+    .contact-form-container {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .form-group label {
+      font-weight: 500;
+      color: var(--text-primary);
+    }
+
+    .form-group input,
+    .form-group textarea {
+      padding: 0.75rem;
+      border-radius: 0.25rem;
+      border: 1px solid var(--border);
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+      font-family: inherit;
+      font-size: 1rem;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--accent);
+    }
+
+    /* Footer */
+    .footer {
+      padding: 3rem 0 1.5rem;
+      background-color: var(--bg-primary);
+    }
+
+    .footer-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2rem;
+    }
+
+    .footer-title {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .footer-subtitle {
+      opacity: 0.8;
+    }
+
+    .footer-social {
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    .footer-social-link {
+      font-size: 1.5rem;
+      color: var(--text-primary);
+      transition: color 0.3s;
+    }
+
+    .footer-social-link:hover {
+      color: var(--accent);
+    }
+
+    .footer-bottom {
+      text-align: center;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+      opacity: 0.7;
+      font-size: 0.9rem;
+    }
+
+    /* Media Queries */
+    @media (max-width: 768px) {
+      .nav-menu {
+        display: none;
+      }
+
+      .menu-toggle {
+        display: block;
+      }
+
+      .mobile-menu.active {
+        display: flex;
+      }
+
+      .hero-content {
+        flex-direction: column-reverse;
+        text-align: center;
+      }
+
+      .hero-links {
+        justify-content: center;
+      }
+
+      .container {
+        padding: 0 15px;
+      }
+
+      .navbar {
+        padding: 0.5rem 0;
+      }
+
+      .logo {
+        font-size: 1.2rem;
+      }
+
+      .menu-toggle {
+        font-size: 1.2rem;
+      }
+
+      .mobile-menu {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background-color: var(--bg-secondary);
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
+
+      .mobile-menu .nav-link {
+        padding: 1rem;
+        text-align: center;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .mobile-menu .nav-link:last-child {
+        border-bottom: none;
+      }
+
+      .footer-content {
+        flex-direction: column;
+        gap: 1.5rem;
+        text-align: center;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .title {
+        font-size: 2.5rem;
+      }
+
+      .name {
+        font-size: 2rem;
+      }
+
+      .section-title {
+        font-size: 2rem;
+      }
+    }
+
+    @media (max-width: 430px) {
+      .hero {
+        padding: 3rem 0;
+      }
+
+      .hero-content {
+        flex-direction: column-reverse;
+        text-align: center;
+      }
+
+      .hero-image {
+        margin-bottom: 2rem;
+      }
+
+      .hero-image img {
+        max-width: 80%;
+      }
+
+      .title {
+        font-size: 2.5rem;
+      }
+
+      .name {
+        font-size: 2rem;
+      }
+
+      .description {
+        font-size: 1rem;
+      }
+
+      .hero-links {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .btn,
+      .social-link {
+        width: 100%;
+        margin-bottom: 1rem;
+        justify-content: center;
+      }
+
+      .portfolio-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .section-title {
+        font-size: 2rem;
+      }
+
+      .about-text {
+        font-size: 1rem;
+      }
+
+      .contact-form-container {
+        padding: 0 1rem;
+      }
+
+      .footer-content {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .footer-social {
+        margin-top: 1rem;
+        justify-content: center;
+      }
+    }
   </style>
 </head>
 <body class="dark-theme">
@@ -701,9 +746,10 @@ body {
         
         <!-- Desktop Navigation -->
         <nav class="nav-menu">
-          <a href="#"class="nav-link">Inicio</a>
+          <a href="#" class="nav-link">Inicio</a>
           <a href="#portfolio" class="nav-link">Proyectos</a>
           <a href="#about" class="nav-link">Sobre Mí</a>
+          <a href="#skills" class="nav-link">Habilidades</a>
           <a href="#contact" class="nav-link">Contacto</a>
           <a href="#" class="nav-link" id="language-toggle">ES/EN</a>
         </nav>
@@ -720,7 +766,9 @@ body {
       <a href="#" class="nav-link">Inicio</a>
       <a href="#portfolio" class="nav-link">Proyectos</a>
       <a href="#about" class="nav-link">Sobre Mí</a>
+      <a href="#skills" class="nav-link">Habilidades</a>
       <a href="#contact" class="nav-link">Contacto</a>
+      <a href="#" class="nav-link" id="mobile-language-toggle">ES/EN</a>
     </div>
   </header>
 
@@ -739,7 +787,7 @@ body {
             <h2 class="name lang-es">Jhorman Jesus Castellanos Morales</h2>
             <h2 class="name lang-en" style="display:none;">Jhorman Jesus Castellanos Morales</h2>
 
-            <p class="description lang-es">Desarrollador Web  junior, estoy en constante aprendizaje para fortalecer conocimientos y experiencias.</p>
+            <p class="description lang-es">Desarrollador Web junior, estoy en constante aprendizaje para fortalecer conocimientos y experiencias.</p>
             <p class="description lang-en" style="display:none;">Junior web developer, I am constantly learning to strengthen my knowledge and experience.</p>
 
             <div class="hero-links">
@@ -760,142 +808,12 @@ body {
             </div>
           </div>
           <!-- Carrusel de imágenes -->
-            <div class="hero-image">
-                <img id="hero-carousel"
-                    src="/img/perfil.jpg"
-                    alt="Jhorman Jesus Castellanos Morales">
-            </div>
+          <div class="hero-image">
+            <img id="hero-carousel" src="https://res.cloudinary.com/dipv76dpn/image/upload/v1757879345/Rosy/ke5zgcojsf2jwr8pgrva.jpg" alt="Jhorman Jesus Castellanos Morales" loading="lazy">
+          </div>
         </div>
       </div>
     </section>
-
-<!-- Portfolio Section -->
-<section id="portfolio" class="portfolio">
-  <div class="container">
-    <h2 class="section-title lang-es">Mis Proyectos</h2>
-    <h2 class="section-title lang-en" style="display:none;">My Projects</h2>
-    
-    <p class="section-subtitle lang-es">Trabajos y proyectos realizados</p>
-    <p class="section-subtitle lang-en" style="display:none;">Completed works and projects</p>
-    
-    <div class="portfolio-grid">
-      <!-- Proyecto 1 -->
-      <div class="portfolio-item">
-        <div class="portfolio-image">
-          <img src="https://www.godaddy.com/resources/latam/wp-content/uploads/sites/4/2024/11/portada_java-se_11zon-1.png?size=3840x0" alt="Configuración de Juegos por Plataforma">
-        </div>
-        <div class="portfolio-content">
-          <h3 class="portfolio-title lang-es">Configuración de Juegos por Plataforma</h3>
-          <h3 class="portfolio-title lang-en" style="display:none;">Game Configuration by Platform</h3>
-          
-          <p class="portfolio-description lang-es">Aplicación que permite configurar y gestionar juegos según diferentes plataformas, facilitando la organización de bibliotecas de videojuegos.</p>
-          <p class="portfolio-description lang-en" style="display:none;">Application that allows you to configure and manage games across different platforms, making it easier to organize video game libraries.</p>
-          
-          <div class="portfolio-buttons">
-            <!-- <button class="btn-download" onclick="downloadProject('proyecto1')">
-              <span class="lang-es">Descargar</span>
-              <span class="lang-en" style="display:none;">Download</span>
-            </button> -->
-            <button class="btn-clone" onclick="cloneProject('https://github.com/Jhormancastella/DesafIo-5-Configuracion-de-Juegos-por-Plataforma')">
-              <span class="lang-es">Clonar</span>
-              <span class="lang-en" style="display:none;">Clone</span>
-            </button>
-            <button class="btn-visit" onclick="visitProject('https://github.com/Jhormancastella/DesafIo-5-Configuracion-de-Juegos-por-Plataforma')">
-              <span class="lang-es">Visitar</span>
-              <span class="lang-en" style="display:none;">Visit</span>
-            </button>
-          </div>
-        </div>
-      </div>
-
-      <!-- Proyecto 2 -->
-      <div class="portfolio-item">
-        <div class="portfolio-image">
-          <img src="https://phoenixnap.com/glossary/wp-content/uploads/2024/06/what-is-java.jpg" alt="Lista de Tareas">
-        </div>
-        <div class="portfolio-content">
-          <h3 class="portfolio-title lang-es">Lista de Tareas</h3>
-          <h3 class="portfolio-title lang-en" style="display:none;">To-Do List</h3>
-          
-          <p class="portfolio-description lang-es">Aplicación web para gestionar tareas diarias, permitiendo crear, editar, marcar como completadas y eliminar tareas de manera intuitiva.</p>
-          <p class="portfolio-description lang-en" style="display:none;">Web application to manage daily tasks, allowing users to create, edit, mark as complete, and delete tasks intuitively.</p>
-          
-          <div class="portfolio-buttons">
-            <!-- <button class="btn-download" onclick="downloadProject('proyecto2')">
-              <span class="lang-es">Descargar</span>
-              <span class="lang-en" style="display:none;">Download</span>
-            </button> -->
-            <button class="btn-clone" onclick="cloneProject('https://github.com/Jhormancastella/ListaDeTareas')">
-              <span class="lang-es">Clonar</span>
-              <span class="lang-en" style="display:none;">Clone</span>
-            </button>
-            <button class="btn-visit" onclick="visitProject('https://github.com/Jhormancastella/ListaDeTareas')">
-              <span class="lang-es">Visitar</span>
-              <span class="lang-en" style="display:none;">Visit</span>
-            </button>
-          </div>
-        </div>
-      </div>
-
-      <!-- Proyecto 3 -->
-      <div class="portfolio-item">
-        <div class="portfolio-image">
-          <img src="https://res.cloudinary.com/dipv76dpn/image/upload/v1757801787/fjtfrshjkyxdtuscpkk5.png" alt="Fotografía Profesional">
-        </div>
-        <div class="portfolio-content">
-          <h3 class="portfolio-title lang-es">Fotografía Profesional</h3>
-          <h3 class="portfolio-title lang-en" style="display:none;">Professional Photography</h3>
-
-          <p class="portfolio-description lang-es">Servicios de fotografía profesional para eventos, retratos y productos. Capturando momentos especiales con un enfoque artístico y técnico.</p>
-          <p class="portfolio-description lang-en" style="display:none;">Professional photography services for events, portraits, and products. Capturing special moments with an artistic and technical approach.</p>
-          
-          <div class="portfolio-buttons">
-            <button class="btn-visit" onclick="visitProject('https://jhormancastella.github.io/FotoStudioRosy/')">
-              <span class="lang-es">Visitar</span>
-              <span class="lang-en" style="display:none;">Visit</span>
-            </button>
-          </div>
-        </div>
-      </div>
-
-      <!-- Proyecto 4 -->
-      <div class="portfolio-item">
-  <div class="portfolio-image">
-    <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/portada%20de%20fantasma%20come%20videojuego.jpg-0Zpq46spXp9ZBJxdlur2WnwyIm84I7.jpeg" alt="Fantasma Come Hamburguesas - Videojuego">
-  </div>
-  <div class="portfolio-content">
-    <h3 class="portfolio-title lang-es">Fantasma Come Hamburguesas</h3>
-    <h3 class="portfolio-title lang-en" style="display:none;">Hamburger Ghost</h3>
-
-    <p class="portfolio-description lang-es">Videojuego original desarrollado con un estilo retro. Una aventura divertida donde controlas un fantasma hambriento en busca de hamburguesas por la ciudad.</p>
-    <p class="portfolio-description lang-en" style="display:none;">Original video game developed in a retro style. A fun adventure where you control a hungry ghost looking for hamburgers around the city.</p>
-    <div class="portfolio-tags">
-      <span class="tag">PC</span>
-      <span class="tag">Próximamente en Móviles</span>
-      <span class="tag" style="display:none;">PC</span>
-      <span class="tag" style="display:none;">Coming Soon on Mobile</span>
-    </div>
-    
-    <div class="portfolio-buttons">
-      <button class="btn-download" onclick="downloadProject('fantasma-come-hamburguesas-pc')">
-        <span class="lang-es">Descargar para PC</span>
-        <span class="lang-en" style="display:none;">Download for PC</span>
-      </button>
-      <button class="btn-visit" onclick="visitProject('https://github.com/Jhormancastella/Fantasma_Come_Hamburguesas')">
-        <span class="lang-es">Código Fuente</span>
-        <span class="lang-en" style="display:none;">Source Code</span>
-      </button>
-      <!-- NUEVO BOTÓN PARA VERSIÓN WEB -->
-      <button class="btn-web" onclick="visitProject('https://jhormancastella.github.io/Fantasma_Come_Hamburguesas/')">
-        <span class="lang-es">Jugar en Web</span>
-        <span class="lang-en" style="display:none;">Play on Web</span>
-      </button>
-    </div>
-  </div>
-</div>
-    </div>
-  </div>
-</section>
 
     <!-- About Section -->
     <section id="about" class="about">
@@ -904,7 +822,7 @@ body {
         <h2 class="section-title lang-en" style="display:none;">About Me</h2>
         
         <div class="about-content">
-          <p class="about-text lang-es">Soy Jhorman Jesus Castellanos Morales, un desarrollador web  junior apasionado por la tecnología y la fotografía.</p>
+          <p class="about-text lang-es">Soy Jhorman Jesus Castellanos Morales, un desarrollador web junior apasionado por la tecnología y la fotografía.</p>
           <p class="about-text lang-en" style="display:none;">I am Jhorman Jesus Castellanos Morales, a junior web developer passionate about technology and photography.</p>
 
           <p class="about-text lang-es">Como técnico en sistemas, tengo una sólida base en el funcionamiento de hardware y software.</p>
@@ -915,6 +833,187 @@ body {
 
           <p class="about-text lang-es">Estoy abierto a colaboraciones y nuevos proyectos que me permitan expandir mis habilidades y aportar valor con mi experiencia técnica y creativa.</p>
           <p class="about-text lang-en" style="display:none;">I am open to collaborations and new projects that allow me to expand my skills and bring value with my technical and creative experience.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="skills">
+      <div class="container">
+        <h2 class="section-title lang-es">Mis Habilidades</h2>
+        <h2 class="section-title lang-en" style="display:none;">My Skills</h2>
+        
+        <p class="section-subtitle lang-es">Tecnologías y herramientas que domino</p>
+        <p class="section-subtitle lang-en" style="display:none;">Technologies and tools I master</p>
+        
+        <div class="skills-grid">
+          <div class="skill-item">
+            <i class="fab fa-html5 skill-icon"></i>
+            <span class="skill-name">HTML</span>
+          </div>
+          <div class="skill-item">
+            <i class="fab fa-js skill-icon"></i>
+            <span class="skill-name">JS</span>
+          </div>
+          <div class="skill-item">
+            <i class="fab fa-css3-alt skill-icon"></i>
+            <span class="skill-name">CSS</span>
+          </div>
+          <div class="skill-item">
+            <i class="fab fa-python skill-icon"></i>
+            <span class="skill-name">Python</span>
+          </div>
+          <div class="skill-item">
+            <i class="fab fa-php skill-icon"></i>
+            <span class="skill-name">PHP</span>
+          </div>
+          <div class="skill-item">
+            <i class="fab fa-java skill-icon"></i>
+            <span class="skill-name">Java</span>
+          </div>
+          <div class="skill-item">
+            <i class="fas fa-leaf skill-icon"></i>
+            <span class="skill-name">Spring Boot</span>
+          </div>
+          <div class="skill-item">
+            <i class="fas fa-database skill-icon"></i>
+            <span class="skill-name">MySQL</span>
+          </div>
+          <div class="skill-item">
+            <i class="fas fa-database skill-icon"></i>
+            <span class="skill-name">PostgreSQL</span>
+          </div>
+          <div class="skill-item">
+            <i class="fas fa-paint-brush skill-icon"></i>
+            <span class="skill-name">Photoshop</span>
+          </div>
+          <div class="skill-item">
+            <i class="fas fa-cube skill-icon"></i>
+            <span class="skill-name">Blender</span>
+          </div>
+          <div class="skill-item">
+            <i class="fab fa-aws skill-icon"></i>
+            <span class="skill-name">AWS</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="portfolio">
+      <div class="container">
+        <h2 class="section-title lang-es">Mis Proyectos</h2>
+        <h2 class="section-title lang-en" style="display:none;">My Projects</h2>
+        
+        <p class="section-subtitle lang-es">Trabajos y proyectos realizados</p>
+        <p class="section-subtitle lang-en" style="display:none;">Completed works and projects</p>
+        
+        <div class="portfolio-grid">
+          <!-- Proyecto 1 -->
+          <div class="portfolio-item">
+            <div class="portfolio-image">
+              <img src="https://www.godaddy.com/resources/latam/wp-content/uploads/sites/4/2024/11/portada_java-se_11zon-1.png?size=3840x0" alt="Configuración de Juegos por Plataforma" loading="lazy">
+            </div>
+            <div class="portfolio-content">
+              <h3 class="portfolio-title lang-es">Configuración de Juegos por Plataforma</h3>
+              <h3 class="portfolio-title lang-en" style="display:none;">Game Configuration by Platform</h3>
+              
+              <p class="portfolio-description lang-es">Aplicación que permite configurar y gestionar juegos según diferentes plataformas, facilitando la organización de bibliotecas de videojuegos.</p>
+              <p class="portfolio-description lang-en" style="display:none;">Application that allows you to configure and manage games across different platforms, making it easier to organize video game libraries.</p>
+              
+              <div class="portfolio-buttons">
+                <button class="btn-clone" onclick="cloneProject('https://github.com/Jhormancastella/DesafIo-5-Configuracion-de-Juegos-por-Plataforma')">
+                  <span class="lang-es">Clonar</span>
+                  <span class="lang-en" style="display:none;">Clone</span>
+                </button>
+                <button class="btn-visit" onclick="visitProject('https://github.com/Jhormancastella/DesafIo-5-Configuracion-de-Juegos-por-Plataforma')">
+                  <span class="lang-es">Visitar</span>
+                  <span class="lang-en" style="display:none;">Visit</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Proyecto 2 -->
+          <div class="portfolio-item">
+            <div class="portfolio-image">
+              <img src="https://phoenixnap.com/glossary/wp-content/uploads/2024/06/what-is-java.jpg" alt="Lista de Tareas" loading="lazy">
+            </div>
+            <div class="portfolio-content">
+              <h3 class="portfolio-title lang-es">Lista de Tareas</h3>
+              <h3 class="portfolio-title lang-en" style="display:none;">To-Do List</h3>
+              
+              <p class="portfolio-description lang-es">Aplicación web para gestionar tareas diarias, permitiendo crear, editar, marcar como completadas y eliminar tareas de manera intuitiva.</p>
+              <p class="portfolio-description lang-en" style="display:none;">Web application to manage daily tasks, allowing users to create, edit, mark as complete, and delete tasks intuitively.</p>
+              
+              <div class="portfolio-buttons">
+                <button class="btn-clone" onclick="cloneProject('https://github.com/Jhormancastella/ListaDeTareas')">
+                  <span class="lang-es">Clonar</span>
+                  <span class="lang-en" style="display:none;">Clone</span>
+                </button>
+                <button class="btn-visit" onclick="visitProject('https://github.com/Jhormancastella/ListaDeTareas')">
+                  <span class="lang-es">Visitar</span>
+                  <span class="lang-en" style="display:none;">Visit</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Proyecto 3 -->
+          <div class="portfolio-item">
+            <div class="portfolio-image">
+              <img src="https://res.cloudinary.com/dipv76dpn/image/upload/v1757801787/fjtfrshjkyxdtuscpkk5.png" alt="Fotografía Profesional" loading="lazy">
+            </div>
+            <div class="portfolio-content">
+              <h3 class="portfolio-title lang-es">Fotografía Profesional</h3>
+              <h3 class="portfolio-title lang-en" style="display:none;">Professional Photography</h3>
+
+              <p class="portfolio-description lang-es">Servicios de fotografía profesional para eventos, retratos y productos. Capturando momentos especiales con un enfoque artístico y técnico.</p>
+              <p class="portfolio-description lang-en" style="display:none;">Professional photography services for events, portraits, and products. Capturing special moments with an artistic and technical approach.</p>
+              
+              <div class="portfolio-buttons">
+                <button class="btn-visit" onclick="visitProject('https://jhormancastella.github.io/FotoStudioRosy/')">
+                  <span class="lang-es">Visitar</span>
+                  <span class="lang-en" style="display:none;">Visit</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Proyecto 4 -->
+          <div class="portfolio-item">
+            <div class="portfolio-image">
+              <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/portada%20de%20fantasma%20come%20videojuego.jpg-0Zpq46spXp9ZBJxdlur2WnwyIm84I7.jpeg" alt="Fantasma Come Hamburguesas - Videojuego" loading="lazy">
+            </div>
+            <div class="portfolio-content">
+              <h3 class="portfolio-title lang-es">Fantasma Come Hamburguesas</h3>
+              <h3 class="portfolio-title lang-en" style="display:none;">Hamburger Ghost</h3>
+
+              <p class="portfolio-description lang-es">Videojuego original desarrollado con un estilo retro. Una aventura divertida donde controlas un fantasma hambriento en busca de hamburguesas por la ciudad.</p>
+              <p class="portfolio-description lang-en" style="display:none;">Original video game developed in a retro style. A fun adventure where you control a hungry ghost looking for hamburgers around the city.</p>
+              <div class="portfolio-tags">
+                <span class="tag lang-es">PC</span>
+                <span class="tag lang-es">Próximamente en Móviles</span>
+                <span class="tag lang-en" style="display:none;">PC</span>
+                <span class="tag lang-en" style="display:none;">Coming Soon on Mobile</span>
+              </div>
+              
+              <div class="portfolio-buttons">
+                <button class="btn-download" onclick="downloadProject('fantasma-come-hamburguesas-pc')">
+                  <span class="lang-es">Descargar para PC</span>
+                  <span class="lang-en" style="display:none;">Download for PC</span>
+                </button>
+                <button class="btn-visit" onclick="visitProject('https://github.com/Jhormancastella/Fantasma_Come_Hamburguesas')">
+                  <span class="lang-es">Código Fuente</span>
+                  <span class="lang-en" style="display:none;">Source Code</span>
+                </button>
+                <button class="btn-visit" onclick="visitProject('https://jhormancastella.github.io/Fantasma_Come_Hamburguesas/')">
+                  <span class="lang-es">Jugar en Web</span>
+                  <span class="lang-en" style="display:none;">Play on Web</span>
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -987,202 +1086,155 @@ body {
     <i class="fas fa-moon"></i>
   </button> -->
 
-  <script src="js/script.js"></script>
   <script>
-    // Script para gestionar el cambio de idiomas
-    document.getElementById('language-toggle').addEventListener('click', function(event) {
-      event.preventDefault();
+    // Variable para rastrear el idioma actual (inicia en español)
+    let currentLang = 'es';
 
-      // Ocultar y mostrar el contenido en español e inglés
+    // Función corregida para cambio de idiomas
+    function toggleLanguage(event) {
+      event.preventDefault();
       const esElements = document.querySelectorAll('.lang-es');
       const enElements = document.querySelectorAll('.lang-en');
+      const toggles = document.querySelectorAll('#language-toggle, #mobile-language-toggle');
 
-      esElements.forEach(el => {
-        el.style.display = (el.style.display === "none") ? "block" : "none";
-      });
-      enElements.forEach(el => {
-        el.style.display = (el.style.display === "none") ? "block" : "none";
-      });
-
-      // Cambiar el texto del botón
-      const currentText = this.textContent;
-      this.textContent = (currentText === "ES/EN") ? "EN/ES" : "ES/EN";
-    });
-  </script>
-  
-<script>
-// Funciones para los botones
-function downloadProject(projectId) {
-  // Aquí implementarías la lógica de descarga
-  alert(`Iniciando descarga del proyecto: ${projectId}`);
-  // En una implementación real, redirigirías a la URL de descarga
-}
-
-function cloneProject(repoUrl) {
-  // Abrir el repositorio en una nueva pestaña
-  window.open(repoUrl, '_blank');
-}
-
-function visitProject(url) {
-  // Visitar el proyecto
-  if (url === '#') {
-    alert('Este proyecto no tiene enlace disponible aún');
-    return;
-  }
-  window.open(url, '_blank');
-}
-</script>
-<script>
-  /* ===== Carrusel automático hero ===== */
-const heroImgs = [
-  'https://res.cloudinary.com/dipv76dpn/image/upload/v1757879345/Rosy/ke5zgcojsf2jwr8pgrva.jpg',
-  'https://itechlc.com/wp-content/uploads/2022/11/istockphoto-1367675043-612x612-1.jpg',
-  'https://images.unsplash.com/photo-1613235577937-9ac3eed992fc?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8Y2Fub24lMjBjYW1lcmF8ZW58MHx8MHx8fDA%3D',
-  'https://catnessgames.com/wp-content/uploads/2024/12/tipos-videojuegos-consolas-y-plataformas.jpg',
-  'https://res.cloudinary.com/dipv76dpn/image/upload/v1757879378/Rosy/mea9yccx3mwf78mwqocs.png',
-  'https://www.campustraining.es/wp-content/uploads/2024/08/lenguaje-C.jpg.webp'
-];
-let currentIndex = 0;
-function cambiarImagenHero() {
-  currentIndex = (currentIndex + 1) % heroImgs.length;
-  document.getElementById('hero-carousel').src = heroImgs[currentIndex];
-}
-setInterval(cambiarImagenHero, 4000);
-// Elementos DOM
-const menuToggle = document.getElementById("menu-toggle")
-const mobileMenu = document.getElementById("mobile-menu")
-const currentYearElement = document.getElementById("current-year")
-const mobileMenuLinks = mobileMenu.querySelectorAll(".nav-link")
-
-// Establecer el año actual en el footer
-currentYearElement.textContent = new Date().getFullYear()
-
-// Función para mostrar/ocultar el menú móvil
-function toggleMobileMenu() {
-  mobileMenu.classList.toggle("active")
-}
-
-// Cerrar el menú móvil al hacer clic en un enlace
-mobileMenuLinks.forEach((link) => {
-  link.addEventListener("click", () => {
-    mobileMenu.classList.remove("active")
-  })
-})
-
-// Event listeners
-menuToggle.addEventListener("click", toggleMobileMenu)
-
-// Smooth scrolling para los enlaces internos
-document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-  anchor.addEventListener("click", function (e) {
-    e.preventDefault()
-
-    document.querySelector(this.getAttribute("href")).scrollIntoView({
-      behavior: "smooth",
-    })
-  })
-})
-// Matrix Background Effect
-const canvas = document.getElementById("matrixCanvas")
-const ctx = canvas.getContext("2d")
-
-// Ajustar el tamaño del canvas
-function resizeCanvas() {
-  canvas.width = window.innerWidth
-  canvas.height = window.innerHeight
-}
-
-resizeCanvas()
-window.addEventListener("resize", resizeCanvas)
-
-// Configuración del efecto Matrix
-const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
-const fontSize = 14
-const columns = canvas.width / fontSize
-const drops = []
-
-// Inicializar las gotas
-for (let i = 0; i < columns; i++) {
-  drops[i] = 1
-}
-
-// Función de dibujo del efecto Matrix
-function drawMatrix() {
-  ctx.fillStyle = "rgba(18, 18, 18, 0.05)"
-  ctx.fillRect(0, 0, canvas.width, canvas.height)
-
-  ctx.fillStyle = "#0F0"
-  ctx.font = fontSize + "px monospace"
-
-  for (let i = 0; i < drops.length; i++) {
-    const text = characters.charAt(Math.floor(Math.random() * characters.length))
-    ctx.fillText(text, i * fontSize, drops[i] * fontSize)
-
-    if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
-      drops[i] = 0
+      if (currentLang === 'es') {
+        // Cambiar a inglés: ocultar ES, mostrar EN
+        esElements.forEach(el => el.style.display = 'none');
+        enElements.forEach(el => el.style.display = '');
+        toggles.forEach(toggle => toggle.textContent = 'EN/ES');
+        currentLang = 'en';
+      } else {
+        // Cambiar a español: ocultar EN, mostrar ES
+        enElements.forEach(el => el.style.display = 'none');
+        esElements.forEach(el => el.style.display = '');
+        toggles.forEach(toggle => toggle.textContent = 'ES/EN');
+        currentLang = 'es';
+      }
     }
 
-    drops[i]++
-  }
-}
+    // Asignar el evento a los botones
+    document.getElementById('language-toggle').addEventListener('click', toggleLanguage);
+    document.getElementById('mobile-language-toggle').addEventListener('click', toggleLanguage);
 
-// Animar el efecto Matrix
-setInterval(drawMatrix, 50)
+    // Funciones para los botones de proyectos
+    function downloadProject(projectId) {
+      alert(`Iniciando descarga del proyecto: ${projectId}`);
+    }
 
-// Cargar proyectos desde JSON
-async function loadProjects() {
-  try {
-    const response = await fetch("data/projects.json")
-    const data = await response.json()
-    const projectsContainer = document.getElementById("projectsContainer")
+    function cloneProject(repoUrl) {
+      window.open(repoUrl, '_blank');
+    }
 
-    projectsContainer.innerHTML = data.projects
-      .map(
-        (project) => `
-            <div class="portfolio-item">
-                <a href="${project.link}" target="_blank">
-                    <div class="portfolio-image">
-                        <img src="${project.image}" alt="${project.title}">
-                    </div>
-                    <div class="portfolio-content">
-                        <h3 class="portfolio-title">${project.title}</h3>
-                        <p class="portfolio-description">${project.description}</p>
-                        ${
-                          project.platforms
-                            ? `
-                            <div class="portfolio-tags">
-                                ${project.platforms
-                                  .map(
-                                    (platform) => `
-                                    <span class="tag">${platform}</span>
-                                `,
-                                  )
-                                  .join("")}
-                            </div>
-                        `
-                            : ""
-                        }
-                    </div>
-                </a>
-            </div>
-        `,
-      )
-      .join("")
-  } catch (error) {
-    console.error("Error loading projects:", error)
-  }
-}
+    function visitProject(url) {
+      if (url === '#') {
+        alert('Este proyecto no tiene enlace disponible aún');
+        return;
+      }
+      window.open(url, '_blank');
+    }
 
-// Cargar proyectos cuando el documento esté listo
-document.addEventListener("DOMContentLoaded", () => {
-  loadProjects()
-  document.getElementById("current-year").textContent = new Date().getFullYear()
-})
+    // Carrusel automático hero
+    const heroImgs = [
+      'https://res.cloudinary.com/dipv76dpn/image/upload/v1757879345/Rosy/ke5zgcojsf2jwr8pgrva.jpg',
+      'https://itechlc.com/wp-content/uploads/2022/11/istockphoto-1367675043-612x612-1.jpg',
+      'https://images.unsplash.com/photo-1613235577937-9ac3eed992fc?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8Y2Fub24lMjBjYW1lcmF8ZW58MHx8MHx8fDA%3D',
+      'https://catnessgames.com/wp-content/uploads/2024/12/tipos-videojuegos-consolas-y-plataformas.jpg',
+      'https://res.cloudinary.com/dipv76dpn/image/upload/v1757879378/Rosy/mea9yccx3mwf78mwqocs.png',
+      'https://www.campustraining.es/wp-content/uploads/2024/08/lenguaje-C.jpg.webp'
+    ];
+    let currentIndex = 0;
+    function cambiarImagenHero() {
+      currentIndex = (currentIndex + 1) % heroImgs.length;
+      document.getElementById('hero-carousel').src = heroImgs[currentIndex];
+    }
+    setInterval(cambiarImagenHero, 4000);
 
-// Duplicate mobile menu and smooth scrolling handlers removed because they are already defined earlier in the script.
+    // Elementos DOM
+    const menuToggle = document.getElementById("menu-toggle");
+    const mobileMenu = document.getElementById("mobile-menu");
+    const currentYearElement = document.getElementById("current-year");
+    const mobileMenuLinks = mobileMenu.querySelectorAll(".nav-link");
 
+    // Establecer el año actual en el footer
+    currentYearElement.textContent = new Date().getFullYear();
 
+    // Función para mostrar/ocultar el menú móvil
+    function toggleMobileMenu() {
+      mobileMenu.classList.toggle("active");
+    }
 
-</script>
+    // Cerrar el menú móvil al hacer clic en un enlace
+    mobileMenuLinks.forEach((link) => {
+      link.addEventListener("click", () => {
+        mobileMenu.classList.remove("active");
+      });
+    });
+
+    // Event listeners
+    menuToggle.addEventListener("click", toggleMobileMenu);
+
+    // Smooth scrolling para los enlaces internos
+    document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+      anchor.addEventListener("click", function (e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute("href")).scrollIntoView({
+          behavior: "smooth",
+        });
+      });
+    });
+
+    // Matrix Background Effect
+    const canvas = document.getElementById("matrixCanvas");
+    const ctx = canvas.getContext("2d");
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+
+    resizeCanvas();
+    window.addEventListener("resize", resizeCanvas);
+
+    const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+    const fontSize = 14;
+    const columns = canvas.width / fontSize;
+    const drops = [];
+
+    for (let i = 0; i < columns; i++) {
+      drops[i] = 1;
+    }
+
+    function drawMatrix() {
+      ctx.fillStyle = "rgba(18, 18, 18, 0.05)";
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = "#0F0";
+      ctx.font = fontSize + "px monospace";
+
+      for (let i = 0; i < drops.length; i++) {
+        const text = characters.charAt(Math.floor(Math.random() * characters.length));
+        ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+        if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+          drops[i] = 0;
+        }
+        drops[i]++;
+      }
+    }
+
+    setInterval(drawMatrix, 50);
+
+    // Toggle descripciones en proyectos
+    document.querySelectorAll('.portfolio-title').forEach(title => {
+      title.addEventListener('click', () => {
+        let next = title.nextElementSibling;
+        while (next) {
+          if (next.classList.contains('portfolio-description')) {
+            next.classList.toggle('active');
+          }
+          next = next.nextElementSibling;
+        }
+      });
+    });
+  </script>
 </body>
 </html>
