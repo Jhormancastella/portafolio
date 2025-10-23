@@ -33,6 +33,149 @@
       --light-shadow: rgba(0, 0, 0, 0.1);
     }
 
+    /* Estilos para el carrusel 3D de habilidades */
+    .skills-carousel-wrapper {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      margin: 2rem 0;
+    }
+
+    .skills-carousel-container {
+      perspective: 1000px;
+      height: 400px;
+      width: 100%;
+      max-width: 800px;
+      position: relative;
+      margin: 0 auto;
+    }
+
+    .skills-carousel {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      transform-style: preserve-3d;
+      transition: transform 0.8s ease;
+      margin: 0 auto;
+    }
+
+    .skill-item-3d {
+      position: absolute;
+      width: 150px;
+      height: 150px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background-color: var(--card-bg);
+      border-radius: 12px;
+      box-shadow: 0 10px 20px var(--shadow);
+      transition: transform 0.8s ease, opacity 0.8s ease;
+      backface-visibility: hidden;
+      border: 2px solid var(--accent);
+      left: calc(50% - 75px); /* Centrar horizontalmente */
+      top: calc(50% - 75px); /* Centrar verticalmente */
+    }
+
+    .skill-icon-3d {
+      font-size: 3rem;
+      color: var(--accent);
+      margin-bottom: 0.75rem;
+    }
+
+    .skill-name-3d {
+      font-weight: 600;
+      color: var(--text-primary);
+      text-align: center;
+      font-size: 0.9rem;
+    }
+
+    .carousel-controls {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+
+    .carousel-btn {
+      background-color: var(--accent);
+      color: var(--bg-primary);
+      border: none;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      font-size: 1.2rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 8px var(--shadow);
+    }
+
+    .carousel-btn:hover {
+      transform: scale(1.1);
+      background-color: #e0b820;
+    }
+
+    .carousel-indicators {
+      display: flex;
+      justify-content: center;
+      gap: 0.5rem;
+      margin-top: 1rem;
+    }
+
+    .indicator {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background-color: var(--text-secondary);
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .indicator.active {
+      background-color: var(--accent);
+      transform: scale(1.2);
+    }
+
+    /* Ajustes responsivos para el carrusel */
+    @media (max-width: 768px) {
+      .skills-carousel-container {
+        height: 350px;
+      }
+      
+      .skill-item-3d {
+        width: 130px;
+        height: 130px;
+        left: calc(50% - 65px);
+        top: calc(50% - 65px);
+      }
+      
+      .skill-icon-3d {
+        font-size: 2.5rem;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .skills-carousel-container {
+        height: 300px;
+      }
+      
+      .skill-item-3d {
+        width: 110px;
+        height: 110px;
+        left: calc(50% - 55px);
+        top: calc(50% - 55px);
+      }
+      
+      .skill-icon-3d {
+        font-size: 2rem;
+      }
+    }
+
+    /* Resto del CSS se mantiene igual */
     .portfolio-buttons {
       display: flex;
       gap: 10px;
@@ -433,52 +576,6 @@
       padding: 5rem 0;
     }
 
-    .skills-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-      gap: 1.5rem;
-      margin-top: 2rem;
-    }
-
-    .skill-item {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      background-color: var(--card-bg);
-      padding: 1rem;
-      border-radius: 0.5rem;
-      box-shadow: 0 4px 10px var(--shadow);
-      transition: transform 0.3s;
-      position: relative;
-    }
-
-    .skill-item:hover {
-      transform: translateY(-5px);
-    }
-
-    .skill-icon {
-      font-size: 2.5rem;
-      color: var(--accent);
-      margin-bottom: 0.5rem;
-    }
-
-    .skill-name {
-      font-weight: 500;
-      color: var(--text-primary);
-    }
-
-    /* Fallback para Photoshop si el ícono no carga */
-    .skill-item:has(.fa-paint-brush)::before {
-      content: 'PS';
-      font-size: 1.5rem;
-      color: var(--accent);
-      display: none;
-    }
-
-    .skill-item .fa-paint-brush:not(:defined)::before {
-      display: block;
-    }
-
     /* About Section */
     .about {
       padding: 5rem 0;
@@ -846,55 +943,26 @@
         <p class="section-subtitle lang-es">Tecnologías y herramientas que domino</p>
         <p class="section-subtitle lang-en" style="display:none;">Technologies and tools I master</p>
         
-        <div class="skills-grid">
-          <div class="skill-item">
-            <i class="fab fa-html5 skill-icon"></i>
-            <span class="skill-name">HTML</span>
+        <!-- Carrusel 3D de habilidades -->
+        <div class="skills-carousel-wrapper">
+          <div class="skills-carousel-container">
+            <div class="skills-carousel" id="skills-carousel">
+              <!-- Los elementos del carrusel se generan dinámicamente con JavaScript -->
+            </div>
           </div>
-          <div class="skill-item">
-            <i class="fab fa-js skill-icon"></i>
-            <span class="skill-name">JS</span>
-          </div>
-          <div class="skill-item">
-            <i class="fab fa-css3-alt skill-icon"></i>
-            <span class="skill-name">CSS</span>
-          </div>
-          <div class="skill-item">
-            <i class="fab fa-python skill-icon"></i>
-            <span class="skill-name">Python</span>
-          </div>
-          <div class="skill-item">
-            <i class="fab fa-php skill-icon"></i>
-            <span class="skill-name">PHP</span>
-          </div>
-          <div class="skill-item">
-            <i class="fab fa-java skill-icon"></i>
-            <span class="skill-name">Java</span>
-          </div>
-          <div class="skill-item">
-            <i class="fas fa-leaf skill-icon"></i>
-            <span class="skill-name">Spring Boot</span>
-          </div>
-          <div class="skill-item">
-            <i class="fas fa-database skill-icon"></i>
-            <span class="skill-name">MySQL</span>
-          </div>
-          <div class="skill-item">
-            <i class="fas fa-database skill-icon"></i>
-            <span class="skill-name">PostgreSQL</span>
-          </div>
-          <div class="skill-item">
-            <i class="fas fa-paint-brush skill-icon"></i>
-            <span class="skill-name">Photoshop</span>
-          </div>
-          <div class="skill-item">
-            <i class="fas fa-cube skill-icon"></i>
-            <span class="skill-name">Blender</span>
-          </div>
-          <div class="skill-item">
-            <i class="fab fa-aws skill-icon"></i>
-            <span class="skill-name">AWS</span>
-          </div>
+        </div>
+        
+        <div class="carousel-controls">
+          <button class="carousel-btn" id="prev-btn">
+            <i class="fas fa-chevron-left"></i>
+          </button>
+          <button class="carousel-btn" id="next-btn">
+            <i class="fas fa-chevron-right"></i>
+          </button>
+        </div>
+        
+        <div class="carousel-indicators" id="carousel-indicators">
+          <!-- Los indicadores se generan dinámicamente con JavaScript -->
         </div>
       </div>
     </section>
@@ -1081,11 +1149,6 @@
     </div>
   </footer>
 
-  <!-- <button id="theme-toggle" class="theme-toggle" aria-label="Cambiar tema">
-    <i class="fas fa-sun"></i>
-    <i class="fas fa-moon"></i>
-  </button> -->
-
   <script>
     // Variable para rastrear el idioma actual (inicia en español)
     let currentLang = 'es';
@@ -1235,6 +1298,118 @@
         }
       });
     });
+
+    // Carrusel 3D de habilidades
+    const skills = [
+      { name: "HTML", icon: "fab fa-html5" },
+      { name: "JS", icon: "fab fa-js" },
+      { name: "CSS", icon: "fab fa-css3-alt" },
+      { name: "Python", icon: "fab fa-python" },
+      { name: "PHP", icon: "fab fa-php" },
+      { name: "Java", icon: "fab fa-java" },
+      { name: "Spring Boot", icon: "fas fa-leaf" },
+      { name: "MySQL", icon: "fas fa-database" },
+      { name: "PostgreSQL", icon: "fas fa-database" },
+      { name: "Photoshop", icon: "fas fa-paint-brush" },
+      { name: "Blender", icon: "fas fa-cube" },
+      { name: "AWS", icon: "fab fa-aws" }
+    ];
+
+    const carousel = document.getElementById('skills-carousel');
+    const prevBtn = document.getElementById('prev-btn');
+    const nextBtn = document.getElementById('next-btn');
+    const indicatorsContainer = document.getElementById('carousel-indicators');
+
+    let currentAngle = 0;
+    const totalSkills = skills.length;
+    const angleStep = 360 / totalSkills;
+    const radius = 200; // Radio del carrusel
+    let autoRotateInterval;
+
+    // Crear elementos del carrusel
+    skills.forEach((skill, index) => {
+      const skillElement = document.createElement('div');
+      skillElement.className = 'skill-item-3d';
+      skillElement.innerHTML = `
+        <i class="${skill.icon} skill-icon-3d"></i>
+        <span class="skill-name-3d">${skill.name}</span>
+      `;
+      carousel.appendChild(skillElement);
+
+      // Crear indicadores
+      const indicator = document.createElement('div');
+      indicator.className = 'indicator';
+      if (index === 0) indicator.classList.add('active');
+      indicator.addEventListener('click', () => {
+        currentAngle = -index * angleStep;
+        updateCarousel();
+        updateIndicators();
+        resetAutoRotate();
+      });
+      indicatorsContainer.appendChild(indicator);
+    });
+
+    // Función para actualizar el carrusel
+    function updateCarousel() {
+      const skillElements = document.querySelectorAll('.skill-item-3d');
+      skillElements.forEach((element, index) => {
+        const angle = (currentAngle + index * angleStep) * Math.PI / 180;
+        const x = Math.sin(angle) * radius;
+        const z = Math.cos(angle) * radius;
+        const scale = 1 + (z / radius) * 0.5; // Escala basada en la posición Z
+        
+        element.style.transform = `translateX(${x}px) translateZ(${z}px) scale(${scale})`;
+        element.style.opacity = 0.5 + (z / radius) * 0.5; // Opacidad basada en la posición Z
+      });
+    }
+
+    // Función para actualizar los indicadores
+    function updateIndicators() {
+      const indicators = document.querySelectorAll('.indicator');
+      const activeIndex = Math.round(((-currentAngle % 360 + 360) % 360) / angleStep);
+      
+      indicators.forEach((indicator, index) => {
+        if (index === activeIndex) {
+          indicator.classList.add('active');
+        } else {
+          indicator.classList.remove('active');
+        }
+      });
+    }
+
+    // Función para rotación automática
+    function startAutoRotate() {
+      autoRotateInterval = setInterval(() => {
+        currentAngle -= angleStep;
+        updateCarousel();
+        updateIndicators();
+      }, 3000); // Cambia cada 3 segundos
+    }
+
+    // Función para reiniciar la rotación automática
+    function resetAutoRotate() {
+      clearInterval(autoRotateInterval);
+      startAutoRotate();
+    }
+
+    // Event listeners para los botones de navegación
+    prevBtn.addEventListener('click', () => {
+      currentAngle += angleStep;
+      updateCarousel();
+      updateIndicators();
+      resetAutoRotate();
+    });
+
+    nextBtn.addEventListener('click', () => {
+      currentAngle -= angleStep;
+      updateCarousel();
+      updateIndicators();
+      resetAutoRotate();
+    });
+
+    // Inicializar el carrusel
+    updateCarousel();
+    startAutoRotate();
   </script>
 </body>
 </html>
