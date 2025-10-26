@@ -468,7 +468,7 @@
       transform: scale(1.2);
     }
 
-    /* Portfolio Section */
+    /* Portfolio Section - MODIFICADO PARA 2 COLUMNAS EN ESCRITORIO */
     .portfolio {
       padding: 3rem 0;
     }
@@ -477,6 +477,20 @@
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 1.5rem;
+    }
+
+    /* Para pantallas medianas y grandes, forzar 2 columnas */
+    @media (min-width: 768px) {
+      .portfolio-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    /* Para pantallas muy grandes, mantener 2 columnas */
+    @media (min-width: 1400px) {
+      .portfolio-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
     }
 
     .portfolio-item {
