@@ -4,6 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Portafolio de Jhorman Jesus Castellanos Morales: Desarrollador Web Junior, Fotógrafo y Técnico en Sistemas.">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="Portafolio | Jhorman Castellanos">
+  <meta property="og:description" content="Desarrollador Web Junior, Fotógrafo y Técnico en Sistemas">
+  <meta property="og:image" content="https://res.cloudinary.com/dipv76dpn/image/upload/v1757879345/Rosy/ke5zgcojsf2jwr8pgrva.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  
   <title>Portafolio | Jhorman Jesus Castellanos Morales</title>
   
   <link rel="icon" type="image/x-icon" href="https://res.cloudinary.com/dipv76dpn/image/upload/v1757879361/Rosy/fstj3avfegrq8heo9xha.png">
@@ -26,7 +32,7 @@
       --light-bg-primary: #ffffff;
       --light-bg-secondary: #f5f5f5;
       --light-text-primary: #333333;
-      --light-text-secondary: #666666;
+      --light-text-secondary: #555555; /* Mejor contraste */
       --light-accent: #f9ca24;
       --light-card-bg: #ffffff;
       --light-border: #e0e0e0;
@@ -136,6 +142,79 @@
 
     .dark-theme .fa-moon {
       display: none;
+    }
+
+    /* Botón Volver Arriba */
+    .scroll-to-top {
+      position: fixed;
+      bottom: 80px;
+      right: 16px;
+      z-index: 1000;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      border: none;
+      background-color: var(--accent);
+      color: var(--bg-primary);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.25rem;
+      transition: all 0.3s ease;
+      opacity: 0;
+      visibility: hidden;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .scroll-to-top.visible {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .scroll-to-top:hover {
+      transform: translateY(-2px);
+    }
+
+    /* Mejoras de accesibilidad */
+    .btn:focus, .nav-link:focus, .theme-toggle:focus, .scroll-to-top:focus {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+
+    /* Estados de carga */
+    .btn:disabled {
+      opacity: 0.7;
+      cursor: not-allowed;
+    }
+
+    .loading-spinner {
+      display: inline-block;
+      width: 16px;
+      height: 16px;
+      border: 2px solid transparent;
+      border-top: 2px solid currentColor;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin-right: 8px;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    /* Preferencias de movimiento reducido */
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+      
+      html {
+        scroll-behavior: auto;
+      }
     }
 
     /* Navbar */
@@ -321,6 +400,7 @@
       object-fit: cover;
       object-position: center;
       display: block;
+      transition: opacity 0.5s ease-in-out;
     }
 
     /* About Section */
@@ -493,12 +573,15 @@
       }
     }
 
+    /* Mejor semántica para los proyectos */
     .portfolio-item {
       border-radius: 0.5rem;
       overflow: hidden;
       background-color: var(--card-bg);
       box-shadow: 0 4px 8px var(--shadow);
       transition: transform 0.3s, box-shadow 0.3s;
+      display: flex;
+      flex-direction: column;
     }
 
     .portfolio-item:hover {
@@ -509,6 +592,10 @@
     .portfolio-item a {
       text-decoration: none;
       color: inherit;
+    }
+
+    .portfolio-header {
+      position: relative;
     }
 
     .portfolio-image {
@@ -530,6 +617,9 @@
 
     .portfolio-content {
       padding: 1.25rem;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
     }
 
     .portfolio-title {
@@ -546,6 +636,7 @@
       display: none;
       font-size: 0.9rem;
       line-height: 1.5;
+      margin-bottom: 1rem;
     }
 
     .portfolio-description.active {
@@ -568,6 +659,10 @@
       font-weight: 500;
       background-color: var(--accent);
       color: var(--bg-primary);
+    }
+
+    .portfolio-actions {
+      margin-top: auto;
     }
 
     .portfolio-buttons {
@@ -614,6 +709,35 @@
 
     .btn-visit:hover {
       background-color: #e68a00;
+    }
+
+    /* Botón Ver Más */
+    .portfolio-more {
+      display: flex;
+      justify-content: center;
+      margin-top: 2.5rem;
+    }
+
+    .btn-more {
+      background-color: var(--accent);
+      color: var(--bg-primary);
+      border: none;
+      border-radius: 2rem;
+      padding: 0.75rem 2rem;
+      font-weight: 600;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      text-decoration: none;
+    }
+
+    .btn-more:hover {
+      background-color: #e0b820;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(255, 215, 0, 0.3);
     }
 
     /* Contact Section */
@@ -774,6 +898,11 @@
       .footer-social {
         justify-content: center;
       }
+      
+      .scroll-to-top {
+        bottom: 70px;
+        right: 12px;
+      }
     }
 
     /* Móviles medianos */
@@ -930,12 +1059,16 @@
         width: 100%;
       }
       
-      .theme-toggle {
+      .theme-toggle, .scroll-to-top {
         width: 44px;
         height: 44px;
         font-size: 1.1rem;
         bottom: 12px;
         right: 12px;
+      }
+      
+      .scroll-to-top {
+        bottom: 70px;
       }
     }
 
@@ -1002,6 +1135,11 @@
   <button class="theme-toggle" id="theme-toggle">
     <i class="fas fa-sun"></i>
     <i class="fas fa-moon"></i>
+  </button>
+
+  <!-- Botón Volver Arriba -->
+  <button class="scroll-to-top" id="scroll-to-top" aria-label="Volver al inicio">
+    <i class="fas fa-chevron-up"></i>
   </button>
 
   <!-- Navbar -->
@@ -1147,10 +1285,12 @@
         
         <div class="portfolio-grid">
           <!-- Proyecto 1 -->
-          <div class="portfolio-item">
-            <div class="portfolio-image">
-              <img src="https://res.cloudinary.com/dipv76dpn/image/upload/v1759597977/undefined_Quiero_una_mezcla_de_d4pb5v.png?size=3840x0" alt="Configuración de Juegos por Plataforma" loading="lazy">
-            </div>
+          <article class="portfolio-item">
+            <header class="portfolio-header">
+              <div class="portfolio-image">
+                <img src="https://res.cloudinary.com/dipv76dpn/image/upload/v1759597977/undefined_Quiero_una_mezcla_de_d4pb5v.png?size=3840x0" alt="Configuración de Juegos por Plataforma" loading="lazy">
+              </div>
+            </header>
             <div class="portfolio-content">
               <h3 class="portfolio-title lang-es">MarcaLibros Personalizados</h3>
               <h3 class="portfolio-title lang-en" style="display:none;">Personalized Bookmarks</h3>
@@ -1158,24 +1298,28 @@
               <p class="portfolio-description lang-es">MarcaLibros Personalizados es una aplicación web interactiva que permite a los usuarios crear separadores de libros personalizados de forma rápida y sencilla. Los usuarios pueden cargar sus propias imágenes, recortarlas según sus preferencias y descargar el resultado en múltiples formatos listos para imprimir..</p>
               <p class="portfolio-description lang-en" style="display:none;">Personalized Bookmarks is an interactive web application that allows users to quickly and easily create personalized bookmarks. Users can upload their own images, crop them to their liking, and download the resulting images in multiple print-ready formats..</p>
               
-              <div class="portfolio-buttons">
-                <button class="btn-clone" onclick="cloneProject('https://github.com/Jhormancastella/MarcaLibros-Free')">
-                  <span class="lang-es">Clonar</span>
-                  <span class="lang-en" style="display:none;">Clone</span>
-                </button>
-                <button class="btn-visit" onclick="visitProject('https://jhormancastella.github.io/MarcaLibros-Free/')">
-                  <span class="lang-es">Visitar</span>
-                  <span class="lang-en" style="display:none;">Visit</span>
-                </button>
-              </div>
+              <footer class="portfolio-actions">
+                <div class="portfolio-buttons">
+                  <button class="btn-clone" onclick="cloneProject('https://github.com/Jhormancastella/MarcaLibros-Free')">
+                    <span class="lang-es">Clonar</span>
+                    <span class="lang-en" style="display:none;">Clone</span>
+                  </button>
+                  <button class="btn-visit" onclick="visitProject('https://jhormancastella.github.io/MarcaLibros-Free/')">
+                    <span class="lang-es">Visitar</span>
+                    <span class="lang-en" style="display:none;">Visit</span>
+                  </button>
+                </div>
+              </footer>
             </div>
-          </div>
+          </article>
 
           <!-- Proyecto 2 -->
-          <div class="portfolio-item">
-            <div class="portfolio-image">
-              <img src="https://phoenixnap.com/glossary/wp-content/uploads/2024/06/what-is-java.jpg" alt="Lista de Tareas" loading="lazy">
-            </div>
+          <article class="portfolio-item">
+            <header class="portfolio-header">
+              <div class="portfolio-image">
+                <img src="https://phoenixnap.com/glossary/wp-content/uploads/2024/06/what-is-java.jpg" alt="Lista de Tareas" loading="lazy">
+              </div>
+            </header>
             <div class="portfolio-content">
               <h3 class="portfolio-title lang-es">Lista de Tareas</h3>
               <h3 class="portfolio-title lang-en" style="display:none;">To-Do List</h3>
@@ -1183,24 +1327,28 @@
               <p class="portfolio-description lang-es">Aplicación web para gestionar tareas diarias, permitiendo crear, editar, marcar como completadas y eliminar tareas de manera intuitiva.</p>
               <p class="portfolio-description lang-en" style="display:none;">Web application to manage daily tasks, allowing users to create, edit, mark as complete, and delete tasks intuitively.</p>
               
-              <div class="portfolio-buttons">
-                <button class="btn-clone" onclick="cloneProject('https://github.com/Jhormancastella/ListaDeTareas')">
-                  <span class="lang-es">Clonar</span>
-                  <span class="lang-en" style="display:none;">Clone</span>
-                </button>
-                <button class="btn-visit" onclick="visitProject('https://github.com/Jhormancastella/ListaDeTareas')">
-                  <span class="lang-es">Visitar</span>
-                  <span class="lang-en" style="display:none;">Visit</span>
-                </button>
-              </div>
+              <footer class="portfolio-actions">
+                <div class="portfolio-buttons">
+                  <button class="btn-clone" onclick="cloneProject('https://github.com/Jhormancastella/ListaDeTareas')">
+                    <span class="lang-es">Clonar</span>
+                    <span class="lang-en" style="display:none;">Clone</span>
+                  </button>
+                  <button class="btn-visit" onclick="visitProject('https://github.com/Jhormancastella/ListaDeTareas')">
+                    <span class="lang-es">Visitar</span>
+                    <span class="lang-en" style="display:none;">Visit</span>
+                  </button>
+                </div>
+              </footer>
             </div>
-          </div>
+          </article>
 
           <!-- Proyecto 3 -->
-          <div class="portfolio-item">
-            <div class="portfolio-image">
-              <img src="https://res.cloudinary.com/dipv76dpn/image/upload/v1757801787/fjtfrshjkyxdtuscpkk5.png" alt="Fotografía Profesional" loading="lazy">
-            </div>
+          <article class="portfolio-item">
+            <header class="portfolio-header">
+              <div class="portfolio-image">
+                <img src="https://res.cloudinary.com/dipv76dpn/image/upload/v1757801787/fjtfrshjkyxdtuscpkk5.png" alt="Fotografía Profesional" loading="lazy">
+              </div>
+            </header>
             <div class="portfolio-content">
               <h3 class="portfolio-title lang-es">Fotografía Profesional</h3>
               <h3 class="portfolio-title lang-en" style="display:none;">Professional Photography</h3>
@@ -1208,20 +1356,24 @@
               <p class="portfolio-description lang-es">Servicios de fotografía profesional para eventos, retratos y productos. Capturando momentos especiales con un enfoque artístico y técnico.</p>
               <p class="portfolio-description lang-en" style="display:none;">Professional photography services for events, portraits, and products. Capturing special moments with an artistic and technical approach.</p>
               
-              <div class="portfolio-buttons">
-                <button class="btn-visit" onclick="visitProject('https://jhormancastella.github.io/FotoStudioRosy/')">
-                  <span class="lang-es">Visitar</span>
-                  <span class="lang-en" style="display:none;">Visit</span>
-                </button>
-              </div>
+              <footer class="portfolio-actions">
+                <div class="portfolio-buttons">
+                  <button class="btn-visit" onclick="visitProject('https://jhormancastella.github.io/FotoStudioRosy/')">
+                    <span class="lang-es">Visitar</span>
+                    <span class="lang-en" style="display:none;">Visit</span>
+                  </button>
+                </div>
+              </footer>
             </div>
-          </div>
+          </article>
 
           <!-- Proyecto 4 -->
-          <div class="portfolio-item">
-            <div class="portfolio-image">
-              <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/portada%20de%20fantasma%20come%20videojuego.jpg-0Zpq46spXp9ZBJxdlur2WnwyIm84I7.jpeg" alt="Fantasma Come Hamburguesas - Videojuego" loading="lazy">
-            </div>
+          <article class="portfolio-item">
+            <header class="portfolio-header">
+              <div class="portfolio-image">
+                <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/portada%20de%20fantasma%20come%20videojuego.jpg-0Zpq46spXp9ZBJxdlur2WnwyIm84I7.jpeg" alt="Fantasma Come Hamburguesas - Videojuego" loading="lazy">
+              </div>
+            </header>
             <div class="portfolio-content">
               <h3 class="portfolio-title lang-es">Fantasma Come Hamburguesas</h3>
               <h3 class="portfolio-title lang-en" style="display:none;">Hamburger Ghost</h3>
@@ -1235,22 +1387,33 @@
                 <span class="tag lang-en" style="display:none;">Coming Soon on Mobile</span>
               </div>
               
-              <div class="portfolio-buttons">
-                <button class="btn-download" onclick="downloadProject('fantasma-come-hamburguesas-pc')">
-                  <span class="lang-es">Descargar para PC</span>
-                  <span class="lang-en" style="display:none;">Download for PC</span>
-                </button>
-                <button class="btn-visit" onclick="visitProject('https://github.com/Jhormancastella/Fantasma_Come_Hamburguesas')">
-                  <span class="lang-es">Código Fuente</span>
-                  <span class="lang-en" style="display:none;">Source Code</span>
-                </button>
-                <button class="btn-visit" onclick="visitProject('https://jhormancastella.github.io/Fantasma_Come_Hamburguesas/')">
-                  <span class="lang-es">Jugar en Web</span>
-                  <span class="lang-en" style="display:none;">Play on Web</span>
-                </button>
-              </div>
+              <footer class="portfolio-actions">
+                <div class="portfolio-buttons">
+                  <button class="btn-download" onclick="downloadProject('fantasma-come-hamburguesas-pc')">
+                    <span class="lang-es">Descargar para PC</span>
+                    <span class="lang-en" style="display:none;">Download for PC</span>
+                  </button>
+                  <button class="btn-visit" onclick="visitProject('https://github.com/Jhormancastella/Fantasma_Come_Hamburguesas')">
+                    <span class="lang-es">Código Fuente</span>
+                    <span class="lang-en" style="display:none;">Source Code</span>
+                  </button>
+                  <button class="btn-visit" onclick="visitProject('https://jhormancastella.github.io/Fantasma_Come_Hamburguesas/')">
+                    <span class="lang-es">Jugar en Web</span>
+                    <span class="lang-en" style="display:none;">Play on Web</span>
+                  </button>
+                </div>
+              </footer>
             </div>
-          </div>
+          </article>
+        </div>
+        
+        <!-- Botón Ver Más -->
+        <div class="portfolio-more">
+          <a href="https://jhormancastella.github.io/Mis-webs/index.html" target="_blank" class="btn-more">
+            <span class="lang-es">Ver Más Proyectos</span>
+            <span class="lang-en" style="display:none;">View More Projects</span>
+            <i class="fas fa-arrow-right"></i>
+          </a>
         </div>
       </div>
     </section>
@@ -1264,9 +1427,9 @@
         <div class="contact-form-container">
           <form class="contact-form" action="https://formsubmit.co/jesusjhorman@gmail.com" method="POST">
             <div class="form-group">
-              <label for="name" class="lang-es">Nombre</label>
-              <label for="name" class="lang-en" style="display:none;">Name</label>
-              <input type="text" id="name" name="name" placeholder="Tu nombre" required>
+              <label for="name" class="lang-es">Nombre completo</label>
+              <label for="name" class="lang-en" style="display:none;">Full name</label>
+              <input type="text" id="name" name="name" placeholder="Tu nombre completo" required minlength="2">
             </div>
             <div class="form-group">
               <label for="email" class="lang-es">Email</label>
@@ -1274,15 +1437,25 @@
               <input type="email" id="email" name="email" placeholder="tu@email.com" required>
             </div>
             <div class="form-group">
+              <label for="subject" class="lang-es">Asunto</label>
+              <label for="subject" class="lang-en" style="display:none;">Subject</label>
+              <input type="text" id="subject" name="_subject" placeholder="Asunto del mensaje" required>
+            </div>
+            <div class="form-group">
               <label for="message" class="lang-es">Mensaje</label>
               <label for="message" class="lang-en" style="display:none;">Message</label>
-              <textarea id="message" name="message" rows="4" placeholder="Tu mensaje..." required></textarea>
+              <textarea id="message" name="message" rows="5" placeholder="Tu mensaje..." required minlength="10"></textarea>
             </div>
-            <input type="hidden" name="_subject" value="Nuevo mensaje de tu portafolio web">
             <input type="hidden" name="_next" value="https://tudominio.com/gracias.html">
             <input type="hidden" name="_captcha" value="false">
-            <button type="submit" class="btn btn-primary btn-full lang-es">Enviar Mensaje</button>
-            <button type="submit" class="btn btn-primary btn-full lang-en" style="display:none;">Send Message</button>
+            <button type="submit" class="btn btn-primary btn-full lang-es">
+              <span class="submit-text">Enviar Mensaje</span>
+              <span class="loading-text" style="display:none;">Enviando...</span>
+            </button>
+            <button type="submit" class="btn btn-primary btn-full lang-en" style="display:none;">
+              <span class="submit-text">Send Message</span>
+              <span class="loading-text" style="display:none;">Sending...</span>
+            </button>
           </form>
         </div>
       </div>
@@ -1306,7 +1479,7 @@
           <a href="https://www.linkedin.com/in/jhorman-jesus-castellanos-morales-245b97261" target="_blank" class="footer-social-link">
             <i class="fab fa-linkedin"></i>
           </a>
-          <a href="mailto:contacto@example.com" class="footer-social-link">
+          <a href="mailto:jesusjhorman@gmail.com" class="footer-social-link">
             <i class="fas fa-envelope"></i>
           </a>
         </div>
@@ -1438,8 +1611,8 @@
       window.open(url, '_blank');
     }
 
-    // Carrusel automático hero
-    const heroImgs = [
+    // Carrusel automático hero - MEJORADO
+    const heroImages = [
       'https://res.cloudinary.com/dipv76dpn/image/upload/v1757879345/Rosy/ke5zgcojsf2jwr8pgrva.jpg',
       'https://itechlc.com/wp-content/uploads/2022/11/istockphoto-1367675043-612x612-1.jpg',
       'https://images.unsplash.com/photo-1613235577937-9ac3eed992fc?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8Y2Fub24lMjBjYW1lcmF8ZW58MHx8MHx8fDA%3D',
@@ -1447,18 +1620,42 @@
       'https://res.cloudinary.com/dipv76dpn/image/upload/v1757879378/Rosy/mea9yccx3mwf78mwqocs.png',
       'https://www.campustraining.es/wp-content/uploads/2024/08/lenguaje-C.jpg.webp'
     ];
-    let currentIndex = 0;
-    function cambiarImagenHero() {
-      currentIndex = (currentIndex + 1) % heroImgs.length;
-      document.getElementById('hero-carousel').src = heroImgs[currentIndex];
+
+    // Precargar imágenes para transiciones suaves
+    function preloadImages(urls) {
+      urls.forEach(url => {
+        const img = new Image();
+        img.src = url;
+      });
     }
-    setInterval(cambiarImagenHero, 4000);
+
+    preloadImages(heroImages);
+
+    let currentHeroIndex = 0;
+    const heroCarousel = document.getElementById('hero-carousel');
+
+    function changeHeroImage() {
+      // Transición suave
+      heroCarousel.style.opacity = '0';
+      
+      setTimeout(() => {
+        currentHeroIndex = (currentHeroIndex + 1) % heroImages.length;
+        heroCarousel.src = heroImages[currentHeroIndex];
+        heroCarousel.style.opacity = '1';
+      }, 300);
+    }
+
+    // Iniciar después de que la página cargue
+    setTimeout(() => {
+      setInterval(changeHeroImage, 5000);
+    }, 2000);
 
     // Elementos DOM
     const menuToggle = document.getElementById("menu-toggle");
     const mobileMenu = document.getElementById("mobile-menu");
     const currentYearElement = document.getElementById("current-year");
     const mobileMenuLinks = mobileMenu.querySelectorAll(".nav-link");
+    const scrollToTopBtn = document.getElementById('scroll-to-top');
 
     // Establecer el año actual en el footer
     currentYearElement.textContent = new Date().getFullYear();
@@ -1482,13 +1679,43 @@
     document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
       anchor.addEventListener("click", function (e) {
         e.preventDefault();
-        document.querySelector(this.getAttribute("href")).scrollIntoView({
-          behavior: "smooth",
-        });
+        const target = document.querySelector(this.getAttribute("href"));
+        if (target) {
+          target.scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+          });
+        }
       });
     });
 
-    // Matrix Background Effect - MODIFICADO PARA SOPORTAR TEMAS
+    // Botón "Volver arriba"
+    window.addEventListener('scroll', () => {
+      if (window.pageYOffset > 300) {
+        scrollToTopBtn.classList.add('visible');
+      } else {
+        scrollToTopBtn.classList.remove('visible');
+      }
+    });
+
+    scrollToTopBtn.addEventListener('click', () => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+
+    // Navegación por teclado
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        // Cerrar menú móvil si está abierto
+        if (mobileMenu.classList.contains('active')) {
+          mobileMenu.classList.remove('active');
+        }
+      }
+    });
+
+    // Matrix Background Effect - OPTIMIZADO
     const canvas = document.getElementById("matrixCanvas");
     const ctx = canvas.getContext("2d");
 
@@ -1500,38 +1727,45 @@
     resizeCanvas();
     window.addEventListener("resize", resizeCanvas);
 
-    const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-    const fontSize = 14;
-    const columns = canvas.width / fontSize;
-    const drops = [];
-
-    for (let i = 0; i < columns; i++) {
-      drops[i] = 1;
-    }
-
-    function drawMatrix() {
-      // Fondo semitransparente según el tema
-      ctx.fillStyle = document.body.classList.contains('dark-theme') 
-        ? 'rgba(18, 18, 18, 0.05)' 
-        : 'rgba(255, 255, 255, 0.05)';
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
+    // Optimizar el efecto Matrix para rendimiento
+    function optimizedMatrix() {
+      const isMobile = window.innerWidth < 768;
+      const frameRate = isMobile ? 100 : 50;
       
-      // Texto con color según el tema
-      ctx.fillStyle = matrixColor;
-      ctx.font = fontSize + "px monospace";
-
-      for (let i = 0; i < drops.length; i++) {
-        const text = characters.charAt(Math.floor(Math.random() * characters.length));
-        ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-
-        if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
-          drops[i] = 0;
+      // Ajustar densidad de caracteres según el dispositivo
+      const fontSize = isMobile ? 12 : 14;
+      const columns = Math.floor(canvas.width / fontSize);
+      
+      const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+      let drops = Array(columns).fill(1);
+      
+      function draw() {
+        // Fondo semitransparente según el tema
+        ctx.fillStyle = document.body.classList.contains('dark-theme') 
+          ? 'rgba(18, 18, 18, 0.03)' 
+          : 'rgba(255, 255, 255, 0.03)';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        
+        // Texto con color según el tema
+        ctx.fillStyle = matrixColor;
+        ctx.font = `${fontSize}px monospace`;
+        
+        for (let i = 0; i < drops.length; i++) {
+          const text = characters.charAt(Math.floor(Math.random() * characters.length));
+          ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+          
+          if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+            drops[i] = 0;
+          }
+          drops[i]++;
         }
-        drops[i]++;
       }
+      
+      setInterval(draw, frameRate);
     }
 
-    setInterval(drawMatrix, 50);
+    // Iniciar efecto Matrix optimizado
+    optimizedMatrix();
 
     // Toggle descripciones en proyectos
     document.querySelectorAll('.portfolio-title').forEach(title => {
@@ -1655,6 +1889,24 @@
       updateCarousel();
       updateIndicators();
       resetAutoRotate();
+    });
+
+    // Mejorar el envío del formulario
+    document.querySelector('.contact-form').addEventListener('submit', function(e) {
+      const submitBtns = this.querySelectorAll('button[type="submit"]');
+      
+      submitBtns.forEach(btn => {
+        const submitText = btn.querySelector('.submit-text');
+        const loadingText = btn.querySelector('.loading-text');
+        
+        if (submitText && loadingText) {
+          submitText.style.display = 'none';
+          loadingText.style.display = 'inline';
+          btn.disabled = true;
+        }
+      });
+      
+      // El formulario se enviará normalmente a FormSubmit
     });
 
     // ===== INICIALIZACIÓN =====
