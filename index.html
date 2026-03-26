@@ -1596,7 +1596,18 @@
 
     // Funciones para los botones de proyectos
     function downloadProject(projectId) {
-      alert(`Iniciando descarga del proyecto: ${projectId}`);
+      const downloadLinks = {
+        'fantasma-come-hamburguesas-pc': 'https://gofile.io/d/iAuo7Pde'
+      };
+
+      const downloadUrl = downloadLinks[projectId];
+
+      if (!downloadUrl) {
+        alert(`No hay una descarga disponible para el proyecto: ${projectId}`);
+        return;
+      }
+
+      window.open(downloadUrl, '_blank', 'noopener');
     }
 
     function cloneProject(repoUrl) {
