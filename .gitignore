@@ -1,11 +1,6 @@
-# ===== CREDENCIALES - NUNCA SUBIR =====
-js/config.js
-
 # Editores
 .vscode/
 .idea/
-*.suo
-*.user
 
 # OS
 .DS_Store
@@ -14,12 +9,6 @@ desktop.ini
 
 # Logs
 *.log
-npm-debug.log*
 
-# Dependencias (si se agregan en el futuro)
+# Dependencias
 node_modules/
-
-# Archivos temporales
-*.tmp
-*.bak
-*.swp
