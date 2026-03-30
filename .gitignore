@@ -12,3 +12,6 @@ desktop.ini
 
 # Dependencias
 node_modules/
+
+# Schema de base de datos
+supabase/
