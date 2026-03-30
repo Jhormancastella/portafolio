@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin | Portafolio</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #121212; --bg2: #1e1e1e; --bg3: #2a2a2a;
+      --text: #e0e0e0; --text2: #a0a0a0;
+      --accent: #ffd700; --border: #3a3a3a;
+      --success: #4CAF50; --error: #f44336;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: "Inter", sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; }
+
+    /* LOGIN */
+    #login-screen {
+      display: flex; align-items: center; justify-content: center;
+      min-height: 100vh; background: var(--bg);
+    }
+    .login-box {
+      background: var(--bg2); border: 1px solid var(--border);
+      border-radius: 12px; padding: 2.5rem; width: 100%; max-width: 380px;
+    }
+    .login-box h1 { font-size: 1.5rem; margin-bottom: 0.25rem; color: var(--accent); }
+    .login-box p { color: var(--text2); font-size: 0.9rem; margin-bottom: 2rem; }
+    .login-field { display: flex; flex-direction: column; gap: 0.4rem; margin-bottom: 1rem; }
+    .login-field label { font-size: 0.85rem; color: var(--text2); }
+    .login-field input {
+      padding: 0.7rem 1rem; border-radius: 6px; border: 1px solid var(--border);
+      background: var(--bg3); color: var(--text); font-size: 0.95rem;
+    }
+    .login-field input:focus { outline: none; border-color: var(--accent); }
+    .btn-login {
+      width: 100%; padding: 0.8rem; background: var(--accent); color: #000;
+      border: none; border-radius: 6px; font-weight: 600; font-size: 1rem;
+      cursor: pointer; transition: background 0.2s;
+    }
+    .btn-login:hover { background: #e0b820; }
+    #login-error { color: var(--error); font-size: 0.85rem; margin-top: 0.75rem; display: none; }
+
+    /* ADMIN PANEL */
+    #admin-panel { display: none; }
+
+    .admin-header {
+      background: var(--bg2); border-bottom: 1px solid var(--border);
+      padding: 1rem 1.5rem; display: flex; justify-content: space-between; align-items: center;
+      position: sticky; top: 0; z-index: 100;
+    }
+    .admin-header h1 { font-size: 1.2rem; color: var(--accent); }
+    .admin-header-right { display: flex; align-items: center; gap: 1rem; }
+    .admin-header-right a { color: var(--text2); text-decoration: none; font-size: 0.9rem; }
+    .admin-header-right a:hover { color: var(--accent); }
+    #logout-btn {
+      background: var(--error); color: white; border: none; border-radius: 6px;
+      padding: 0.4rem 1rem; cursor: pointer; font-size: 0.85rem; font-weight: 500;
+    }
+
+    /* TABS */
+    .admin-tabs {
+      display: flex; gap: 0; border-bottom: 1px solid var(--border);
+      background: var(--bg2); overflow-x: auto;
+    }
+    .admin-tab {
+      padding: 0.85rem 1.25rem; background: none; border: none; color: var(--text2);
+      cursor: pointer; font-size: 0.9rem; font-weight: 500; white-space: nowrap;
+      border-bottom: 2px solid transparent; transition: all 0.2s;
+    }
+    .admin-tab:hover { color: var(--text); }
+    .admin-tab.active { color: var(--accent); border-bottom-color: var(--accent); }
+
+    /* SECTIONS */
+    .admin-content { padding: 1.5rem; max-width: 1100px; margin: 0 auto; }
+    .admin-section { display: none; }
+    .admin-section.active { display: block; }
+    .admin-section h2 { font-size: 1.2rem; margin-bottom: 1.25rem; color: var(--text); }
+
+    /* PROFILE FORM */
+    .profile-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .profile-grid .full { grid-column: 1 / -1; }
+    .field-group { display: flex; flex-direction: column; gap: 0.4rem; }
+    .field-group label { font-size: 0.8rem; color: var(--text2); font-weight: 500; }
+    .field-group input, .field-group textarea {
+      padding: 0.6rem 0.8rem; border-radius: 6px; border: 1px solid var(--border);
+      background: var(--bg3); color: var(--text); font-size: 0.9rem; font-family: inherit;
+    }
+    .field-group input:focus, .field-group textarea:focus { outline: none; border-color: var(--accent); }
+    .btn-save {
+      margin-top: 1.25rem; padding: 0.7rem 2rem; background: var(--accent); color: #000;
+      border: none; border-radius: 6px; font-weight: 600; cursor: pointer; font-size: 0.95rem;
+    }
+    .btn-save:hover { background: #e0b820; }
+
+    /* LIST ROWS */
+    .admin-list { display: flex; flex-direction: column; gap: 0.75rem; margin-bottom: 1rem; }
+    .admin-row {
+      display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap;
+      background: var(--bg2); border: 1px solid var(--border); border-radius: 8px; padding: 0.75rem 1rem;
+    }
+    .admin-row input[type="text"], .admin-row input[type="number"] {
+      padding: 0.5rem 0.7rem; border-radius: 6px; border: 1px solid var(--border);
+      background: var(--bg3); color: var(--text); font-size: 0.85rem; flex: 1; min-width: 120px;
+    }
+    .admin-row input:focus { outline: none; border-color: var(--accent); }
+    .toggle-label { display: flex; align-items: center; gap: 0.4rem; font-size: 0.85rem; color: var(--text2); white-space: nowrap; }
+    .toggle-label input[type="checkbox"] { accent-color: var(--accent); width: 16px; height: 16px; }
+
+    /* CARDS (proyectos / about) */
+    .admin-card {
+      background: var(--bg2); border: 1px solid var(--border);
+      border-radius: 10px; margin-bottom: 1rem; overflow: hidden;
+    }
+    .admin-card-header {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 0.85rem 1.25rem; background: var(--bg3); border-bottom: 1px solid var(--border);
+      font-weight: 600; font-size: 0.95rem;
+    }
+    .admin-card-body { padding: 1.25rem; display: flex; flex-direction: column; gap: 0.85rem; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .form-group { display: flex; flex-direction: column; gap: 0.4rem; }
+    .form-group label { font-size: 0.8rem; color: var(--text2); font-weight: 500; }
+    .form-group input, .form-group textarea {
+      padding: 0.6rem 0.8rem; border-radius: 6px; border: 1px solid var(--border);
+      background: var(--bg3); color: var(--text); font-size: 0.85rem; font-family: inherit; width: 100%;
+    }
+    .form-group input:focus, .form-group textarea:focus { outline: none; border-color: var(--accent); }
+
+    /* BUTTONS */
+    .btn-save-row {
+      padding: 0.45rem 0.9rem; background: var(--success); color: white;
+      border: none; border-radius: 5px; cursor: pointer; font-size: 0.8rem; font-weight: 500;
+      white-space: nowrap;
+    }
+    .btn-save-row:hover { background: #3e8e41; }
+    .btn-delete-row {
+      padding: 0.45rem 0.9rem; background: var(--error); color: white;
+      border: none; border-radius: 5px; cursor: pointer; font-size: 0.8rem; font-weight: 500;
+      white-space: nowrap;
+    }
+    .btn-delete-row:hover { background: #c62828; }
+    .btn-add {
+      padding: 0.6rem 1.25rem; background: var(--bg3); color: var(--accent);
+      border: 1px dashed var(--accent); border-radius: 6px; cursor: pointer;
+      font-size: 0.9rem; font-weight: 500; transition: all 0.2s; width: 100%;
+    }
+    .btn-add:hover { background: rgba(255,215,0,0.1); }
+
+    /* TOAST */
+    .toast {
+      position: fixed; bottom: 1.5rem; left: 50%; transform: translateX(-50%) translateY(100px);
+      padding: 0.75rem 1.5rem; border-radius: 8px; font-weight: 500; font-size: 0.9rem;
+      transition: transform 0.3s ease; z-index: 9999; pointer-events: none;
+    }
+    .toast.visible { transform: translateX(-50%) translateY(0); }
+    .toast-success { background: var(--success); color: white; }
+    .toast-error { background: var(--error); color: white; }
+
+    @media (max-width: 600px) {
+      .profile-grid { grid-template-columns: 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+      .admin-header h1 { font-size: 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- LOGIN -->
+  <div id="login-screen">
+    <div class="login-box">
+      <h1><i class="fas fa-lock"></i> Admin</h1>
+      <p>Acceso al panel de administración</p>
+      <form id="login-form">
+        <div class="login-field">
+          <label>Email</label>
+          <input type="email" id="login-email" required placeholder="tu@email.com">
+        </div>
+        <div class="login-field">
+          <label>Contraseña</label>
+          <input type="password" id="login-password" required placeholder="••••••••">
+        </div>
+        <button type="submit" class="btn-login">Ingresar</button>
+        <p id="login-error"></p>
+      </form>
+    </div>
+  </div>
+
+  <!-- ADMIN PANEL -->
+  <div id="admin-panel">
+    <header class="admin-header">
+      <h1><i class="fas fa-cog"></i> Panel Admin</h1>
+      <div class="admin-header-right">
+        <a href="index.html" target="_blank"><i class="fas fa-external-link-alt"></i> Ver Portafolio</a>
+        <button id="logout-btn"><i class="fas fa-sign-out-alt"></i> Salir</button>
+      </div>
+    </header>
+
+    <div class="admin-tabs">
+      <button class="admin-tab active" data-section="section-profile">Perfil</button>
+      <button class="admin-tab" data-section="section-hero">Hero Images</button>
+      <button class="admin-tab" data-section="section-skills">Habilidades</button>
+      <button class="admin-tab" data-section="section-projects">Proyectos</button>
+      <button class="admin-tab" data-section="section-about">Sobre Mí</button>
+    </div>
+
+    <div class="admin-content">
+
+      <!-- PERFIL -->
+      <div id="section-profile" class="admin-section active">
+        <h2>Información Personal</h2>
+        <form id="profile-form">
+          <div class="profile-grid">
+            <div class="field-group">
+              <label>Nombre ES</label>
+              <input type="text" name="name_es">
+            </div>
+            <div class="field-group">
+              <label>Nombre EN</label>
+              <input type="text" name="name_en">
+            </div>
+            <div class="field-group">
+              <label>Subtítulo ES</label>
+              <input type="text" name="subtitle_es">
+            </div>
+            <div class="field-group">
+              <label>Subtítulo EN</label>
+              <input type="text" name="subtitle_en">
+            </div>
+            <div class="field-group">
+              <label>Título Hero ES</label>
+              <input type="text" name="title_es">
+            </div>
+            <div class="field-group">
+              <label>Título Hero EN</label>
+              <input type="text" name="title_en">
+            </div>
+            <div class="field-group full">
+              <label>Descripción ES</label>
+              <textarea name="description_es" rows="3"></textarea>
+            </div>
+            <div class="field-group full">
+              <label>Descripción EN</label>
+              <textarea name="description_en" rows="3"></textarea>
+            </div>
+            <div class="field-group">
+              <label>GitHub URL</label>
+              <input type="text" name="github_url">
+            </div>
+            <div class="field-group">
+              <label>LinkedIn URL</label>
+              <input type="text" name="linkedin_url">
+            </div>
+            <div class="field-group">
+              <label>Email</label>
+              <input type="email" name="email">
+            </div>
+            <div class="field-group">
+              <label>Logo texto</label>
+              <input type="text" name="logo_text">
+            </div>
+            <div class="field-group">
+              <label>Footer subtítulo ES</label>
+              <input type="text" name="footer_subtitle_es">
+            </div>
+            <div class="field-group">
+              <label>Footer subtítulo EN</label>
+              <input type="text" name="footer_subtitle_en">
+            </div>
+          </div>
+          <button type="submit" class="btn-save">Guardar Perfil</button>
+        </form>
+      </div>
+
+      <!-- HERO IMAGES -->
+      <div id="section-hero" class="admin-section">
+        <h2>Imágenes del Carrusel Hero</h2>
+        <div id="hero-images-list" class="admin-list"></div>
+        <button class="btn-add" id="add-hero-image"><i class="fas fa-plus"></i> Agregar Imagen</button>
+      </div>
+
+      <!-- SKILLS -->
+      <div id="section-skills" class="admin-section">
+        <h2>Habilidades</h2>
+        <p style="color:var(--text2);font-size:0.85rem;margin-bottom:1rem">
+          Usa clases de <a href="https://fontawesome.com/icons" target="_blank" style="color:var(--accent)">Font Awesome</a> para los íconos (ej: <code>fab fa-html5</code>)
+        </p>
+        <div id="skills-list" class="admin-list"></div>
+        <button class="btn-add" id="add-skill"><i class="fas fa-plus"></i> Agregar Habilidad</button>
+      </div>
+
+      <!-- PROYECTOS -->
+      <div id="section-projects" class="admin-section">
+        <h2>Proyectos</h2>
+        <div id="projects-list"></div>
+        <button class="btn-add" id="add-project"><i class="fas fa-plus"></i> Agregar Proyecto</button>
+      </div>
+
+      <!-- ABOUT -->
+      <div id="section-about" class="admin-section">
+        <h2>Sobre Mí</h2>
+        <div id="about-list"></div>
+        <button class="btn-add" id="add-about"><i class="fas fa-plus"></i> Agregar Párrafo</button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div id="toast" class="toast"></div>
+
+  <!-- Supabase -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <!-- Config -->
+  <script src="js/config.js"></script>
+  <!-- Firebase Auth -->
+  <script type="module" src="js/admin.js"></script>
+</body>
+</html>
