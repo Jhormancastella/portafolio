@@ -365,7 +365,7 @@
 
     fab.addEventListener('click', () => overlay.classList.add('active'));
     document.getElementById('admin-fab-mobile')?.addEventListener('click', () => {
-      mobileMenu.classList.remove('active');
+      document.getElementById('mobile-menu').classList.remove('active');
       overlay.classList.add('active');
     });
     cancelBtn.addEventListener('click', () => {
