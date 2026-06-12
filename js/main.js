@@ -145,30 +145,54 @@ function renderProjects(projects) {
       <div class="portfolio-content">
         <h3 class="portfolio-title lang-es">${p.title_es}</h3>
         <h3 class="portfolio-title lang-en" style="display:none">${p.title_en}</h3>
+      </div>
+      <div class="portfolio-full-content">
+        <h2 class="portfolio-title lang-es">${p.title_es}</h2>
+        <h2 class="portfolio-title lang-en" style="display:none">${p.title_en}</h2>
         <p class="portfolio-description lang-es">${p.description_es || ''}</p>
         <p class="portfolio-description lang-en" style="display:none">${p.description_en || ''}</p>
         ${tags}
         <footer class="portfolio-actions">
           <div class="portfolio-buttons">${buttons}</div>
         </footer>
+        <button class="btn-close-project" aria-label="Cerrar"><span class="close-x"><i class="fas fa-times"></i></span><span class="close-text lang-es">Cerrar</span><span class="close-text lang-en" style="display:none">Close</span></button>
       </div>`;
+
+    article.addEventListener('click', (e) => {
+      if (e.target.closest('.portfolio-full-content')) return;
+      const all = document.querySelectorAll('.portfolio-item');
+      all.forEach(item => {
+        if (item !== article) {
+          item.style.display = 'none';
+        }
+      });
+      article.classList.add('expanded');
+      article.querySelectorAll('.portfolio-description').forEach(d => d.classList.add('active'));
+      applyLang(currentLang);
+    });
+
+    const fullContent = article.querySelector('.portfolio-full-content');
+    fullContent.addEventListener('click', (e) => {
+      e.stopPropagation();
+    });
+
+    const closeBtn = article.querySelector('.btn-close-project');
+    closeBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const all = document.querySelectorAll('.portfolio-item');
+      all.forEach(item => {
+        item.style.display = '';
+        item.classList.remove('expanded');
+        item.querySelectorAll('.portfolio-description').forEach(d => d.classList.remove('active'));
+      });
+      applyLang(currentLang);
+    });
 
     grid.appendChild(article);
   });
 
   // Re-aplicar idioma actual
   applyLang(currentLang);
-
-  // Toggle descripciones
-  document.querySelectorAll('.portfolio-title').forEach(title => {
-    title.addEventListener('click', () => {
-      let next = title.nextElementSibling;
-      while (next) {
-        if (next.classList.contains('portfolio-description')) next.classList.toggle('active');
-        next = next.nextElementSibling;
-      }
-    });
-  });
 }
 
 function buildProjectButtons(p) {

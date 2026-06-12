@@ -41,10 +41,10 @@ document.getElementById('logout-btn').addEventListener('click', () =>
 async function loadAdminData() {
   await Promise.all([
     loadProfile(),
-    loadHeroImages(),
-    loadSkills(),
-    loadProjects(),
-    loadAboutTexts()
+    window.loadHeroImages(),
+    window.loadSkills(),
+    window.loadProjects(),
+    window.loadAboutTexts()
   ]);
 }
 
@@ -74,7 +74,7 @@ document.getElementById('profile-form').addEventListener('submit', async e => {
 });
 
 // ===== HERO IMAGES =====
-async function loadHeroImages() {
+window.loadHeroImages = async function loadHeroImages() {
   const { data } = await db.from('hero_images').select('*').order('sort_order');
   renderAdminList('hero-images-list', data, renderHeroImageRow);
 }
@@ -90,17 +90,17 @@ function renderHeroImageRow(item) {
         <input type="checkbox" ${item.active ? 'checked' : ''} data-field="active"> Activo
       </label>
       <button class="btn-save-row" onclick="saveRow('hero_images', '${item.id}', this)">Guardar</button>
-      <button class="btn-delete-row" onclick="deleteRow('hero_images', '${item.id}', loadHeroImages)">Eliminar</button>
+      <button class="btn-delete-row" onclick="deleteRow('hero_images', '${item.id}', 'loadHeroImages')">Eliminar</button>
     </div>`;
 }
 
 document.getElementById('add-hero-image').addEventListener('click', async () => {
   await db.from('hero_images').insert({ url: 'https://', alt_text: '', sort_order: 99, active: true });
-  loadHeroImages();
+  window.loadHeroImages();
 });
 
 // ===== SKILLS =====
-async function loadSkills() {
+window.loadSkills = async function loadSkills() {
   const { data } = await db.from('skills').select('*').order('sort_order');
   renderAdminList('skills-list', data, renderSkillRow);
 }
@@ -116,17 +116,17 @@ function renderSkillRow(item) {
         <input type="checkbox" ${item.active ? 'checked' : ''} data-field="active"> Activo
       </label>
       <button class="btn-save-row" onclick="saveRow('skills', '${item.id}', this)">Guardar</button>
-      <button class="btn-delete-row" onclick="deleteRow('skills', '${item.id}', loadSkills)">Eliminar</button>
+      <button class="btn-delete-row" onclick="deleteRow('skills', '${item.id}', 'loadSkills')">Eliminar</button>
     </div>`;
 }
 
 document.getElementById('add-skill').addEventListener('click', async () => {
   await db.from('skills').insert({ name: 'Nueva Habilidad', icon: 'fas fa-code', sort_order: 99, active: true });
-  loadSkills();
+  window.loadSkills();
 });
 
 // ===== PROYECTOS =====
-async function loadProjects() {
+window.loadProjects = async function loadProjects() {
   const { data } = await db.from('projects').select('*').order('sort_order');
   renderAdminList('projects-list', data, renderProjectRow);
 }
@@ -138,7 +138,7 @@ function renderProjectRow(item) {
         <span>${item.title_es}</span>
         <div>
           <button class="btn-save-row" onclick="saveRow('projects', '${item.id}', this)">Guardar</button>
-          <button class="btn-delete-row" onclick="deleteRow('projects', '${item.id}', loadProjects)">Eliminar</button>
+          <button class="btn-delete-row" onclick="deleteRow('projects', '${item.id}', 'loadProjects')">Eliminar</button>
         </div>
       </div>
       <div class="admin-card-body">
@@ -223,11 +223,11 @@ document.getElementById('add-project').addEventListener('click', async () => {
     description_es: '', description_en: '',
     sort_order: 99, active: true
   });
-  loadProjects();
+  window.loadProjects();
 });
 
 // ===== ABOUT TEXTS =====
-async function loadAboutTexts() {
+window.loadAboutTexts = async function loadAboutTexts() {
   const { data } = await db.from('about_texts').select('*').order('sort_order');
   renderAdminList('about-list', data, renderAboutRow);
 }
@@ -239,7 +239,7 @@ function renderAboutRow(item) {
         <span>Párrafo #${item.sort_order}</span>
         <div>
           <button class="btn-save-row" onclick="saveRow('about_texts', '${item.id}', this)">Guardar</button>
-          <button class="btn-delete-row" onclick="deleteRow('about_texts', '${item.id}', loadAboutTexts)">Eliminar</button>
+          <button class="btn-delete-row" onclick="deleteRow('about_texts', '${item.id}', 'loadAboutTexts')">Eliminar</button>
         </div>
       </div>
       <div class="admin-card-body">
@@ -270,7 +270,7 @@ function renderAboutRow(item) {
 
 document.getElementById('add-about').addEventListener('click', async () => {
   await db.from('about_texts').insert({ content_es: '', content_en: '', sort_order: 99, active: true });
-  loadAboutTexts();
+  window.loadAboutTexts();
 });
 
 // ===== HELPERS CRUD =====
@@ -300,8 +300,12 @@ window.saveRow = async function(table, id, btn) {
 window.deleteRow = async function(table, id, reloadFn) {
   if (!confirm('¿Eliminar este elemento?')) return;
   const { error } = await db.from(table).delete().eq('id', id);
-  if (!error) reloadFn();
-  else showToast('Error al eliminar', 'error');
+  if (!error) {
+    const fn = typeof reloadFn === 'string' ? window[reloadFn] : reloadFn;
+    if (fn) fn();
+  } else {
+    showToast('Error al eliminar', 'error');
+  }
 };
 
 // ===== TABS =====
