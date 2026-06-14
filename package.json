@@ -1,0 +1,27 @@
+{
+  "name": "portafolio",
+  "version": "1.0.0",
+  "description": "Portfolio project",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "vitest",
+    "test:ui": "vitest --ui",
+    "test:run": "vitest run"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Jhormancastella/portafolio.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Jhormancastella/portafolio/issues"
+  },
+  "homepage": "https://github.com/Jhormancastella/portafolio#readme",
+  "devDependencies": {
+    "jsdom": "^29.1.1",
+    "vitest": "^4.1.8"
+  }
+}

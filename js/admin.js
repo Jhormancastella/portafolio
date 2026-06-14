@@ -70,7 +70,12 @@ document.getElementById('profile-form').addEventListener('submit', async e => {
   data.updated_at = new Date().toISOString();
 
   const { error } = await db.from('profile').update(data).neq('id', '00000000-0000-0000-0000-000000000000');
-  showToast(error ? 'Error al guardar' : 'Perfil guardado', error ? 'error' : 'success');
+  if (error) {
+    console.error('Error Supabase:', error.message);
+    showToast('Error al guardar: ' + error.message, 'error');
+  } else {
+    showToast('Perfil guardado', 'success');
+  }
 });
 
 // ===== HERO IMAGES =====
@@ -280,6 +285,32 @@ function renderAdminList(containerId, data, rowFn) {
   container.innerHTML = (data || []).map(rowFn).join('');
 }
 
+// ===== VALIDACIÓN DE FORMULARIOS =====
+function isValidURL(string) {
+  if (!string || string.trim() === '') return true; // Permitir URLs vacías
+  try {
+    new URL(string);
+    return true;
+  } catch (_) {
+    return false;
+  }
+}
+
+function validateProjectData(data) {
+  const errors = [];
+  if (!data.title_es || data.title_es.trim().length < 3) errors.push('El título en ES debe tener al menos 3 caracteres.');
+  if (!data.title_en || data.title_en.trim().length < 3) errors.push('The title in EN must have at least 3 characters.');
+  
+  const urlFields = ['image_url', 'btn_clone_url', 'btn_visit_url', 'btn_download_url', 'btn_source_url', 'btn_play_url'];
+  urlFields.forEach(field => {
+    if (data[field] && !isValidURL(data[field])) {
+      errors.push(`La URL del campo "${field}" no tiene un formato válido.`);
+    }
+  });
+
+  return errors;
+}
+
 window.saveRow = async function(table, id, btn) {
   const row = btn.closest('[data-id]');
   const data = {};
@@ -293,8 +324,23 @@ window.saveRow = async function(table, id, btn) {
   });
   if (data.updated_at !== undefined) data.updated_at = new Date().toISOString();
 
+  // Validación específica para proyectos
+  if (table === 'projects') {
+    const errors = validateProjectData(data);
+    if (errors.length > 0) {
+      showToast(errors[0], 'error');
+      console.warn('Errores de validación:', errors);
+      return;
+    }
+  }
+
   const { error } = await db.from(table).update(data).eq('id', id);
-  showToast(error ? 'Error al guardar' : 'Guardado', error ? 'error' : 'success');
+  if (error) {
+    console.error('Error Supabase:', error.message);
+    showToast('Error al guardar: ' + error.message, 'error');
+  } else {
+    showToast('Guardado', 'success');
+  }
 };
 
 window.deleteRow = async function(table, id, reloadFn) {
@@ -304,7 +350,8 @@ window.deleteRow = async function(table, id, reloadFn) {
     const fn = typeof reloadFn === 'string' ? window[reloadFn] : reloadFn;
     if (fn) fn();
   } else {
-    showToast('Error al eliminar', 'error');
+    console.error('Error Supabase al eliminar:', error.message);
+    showToast('Error al eliminar: ' + error.message, 'error');
   }
 };
 
