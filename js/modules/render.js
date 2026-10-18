@@ -18,6 +18,15 @@ export function renderProfile(p) {
   const emailLinks = document.querySelectorAll('.link-email');
   emailLinks.forEach(el => el.href = `mailto:${p.email}`);
 
+  const whatsappNumber = (p.whatsapp_number || '').replace(/\D/g, '');
+  const whatsappUrl = /^[1-9]\d{6,14}$/.test(whatsappNumber)
+    ? `https://wa.me/${whatsappNumber}`
+    : '';
+  document.querySelectorAll('.link-whatsapp').forEach(el => {
+    el.href = whatsappUrl;
+    el.style.display = whatsappUrl ? '' : 'none';
+  });
+
   document.querySelectorAll('.footer-name').forEach(el => el.textContent = p.name_es);
   setLangText('.footer-subtitle', p.footer_subtitle_es, p.footer_subtitle_en);
 

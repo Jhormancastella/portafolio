@@ -35,6 +35,7 @@ Portafolio personal de **Jhorman Jesus Castellanos Morales** — Desarrollador W
 - **Contenido dinámico** – Proyectos, habilidades, perfil y textos cargados desde Supabase.
 - **Responsive** – Optimizado desde 360px hasta pantallas 1400px+.
 - **Formulario de contacto** – Integrado con FormSubmit.
+- **Contacto por WhatsApp** – Número editable desde el perfil del panel Admin.
 
 ---
 
@@ -98,6 +99,8 @@ cd portafolio
 ### 2. Configurar servicios
 
 **Supabase** — crea un proyecto, configura las tablas necesarias y obtén tu `Project URL` y `anon key`.
+
+Antes de editar el número de WhatsApp desde el panel, ejecuta el script [`database/migrations/20261018_add_whatsapp_number_to_profile.sql`](./database/migrations/20261018_add_whatsapp_number_to_profile.sql) en el SQL Editor de tu proyecto Supabase. En Admin → Perfil, guarda el número con código de país (solo se guardan los dígitos, por ejemplo `573001234567`). El enlace aparece en el portafolio cuando hay un número válido.
 
 **Firebase** — crea un proyecto, habilita Authentication → Email/Password y agrega tu usuario admin.
 

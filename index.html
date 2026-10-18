@@ -122,6 +122,9 @@
               <a href="https://www.linkedin.com/in/jhorman-jesus-castellanos-morales-245b97261" target="_blank" class="social-link link-linkedin" rel="noopener noreferrer" aria-label="Visitar LinkedIn">
                 <i class="fab fa-linkedin" aria-hidden="true"></i> LinkedIn
               </a>
+              <a href="#" target="_blank" class="social-link link-whatsapp" rel="noopener noreferrer" aria-label="Contactar por WhatsApp" style="display:none">
+                <i class="fab fa-whatsapp" aria-hidden="true"></i> WhatsApp
+              </a>
             </div>
           </div>
           <div class="hero-image">
@@ -185,40 +188,84 @@
     <!-- Contact -->
     <section id="contact" class="contact section-animate" aria-labelledby="contact-title">
       <div class="container">
-        <h2 id="contact-title" class="section-title lang-es">Contacto</h2>
-        <h2 id="contact-title" class="section-title lang-en" style="display:none">Contact</h2>
-        <div class="contact-form-container">
-          <form class="contact-form" action="https://formsubmit.co/jesusjhorman@gmail.com" method="POST" aria-label="Formulario de contacto">
-            <div class="form-group">
-              <label for="name" class="lang-es">Nombre completo</label>
-              <label for="name" class="lang-en" style="display:none">Full name</label>
-              <input type="text" id="name" name="name" placeholder="Tu nombre completo" required minlength="2" autocomplete="name">
+        <div class="contact-layout">
+          <div class="contact-intro">
+            <span class="contact-eyebrow lang-es"><i class="fas fa-circle" aria-hidden="true"></i> Disponible para nuevos proyectos</span>
+            <span class="contact-eyebrow lang-en" style="display:none"><i class="fas fa-circle" aria-hidden="true"></i> Available for new projects</span>
+            <h2 id="contact-title" class="contact-title lang-es">Hablemos de tu próximo proyecto</h2>
+            <h2 class="contact-title lang-en" style="display:none">Let’s talk about your next project</h2>
+            <p class="contact-description lang-es">¿Tienes una idea o necesitas ayuda con tu proyecto? Cuéntame un poco y me pondré en contacto contigo.</p>
+            <p class="contact-description lang-en" style="display:none">Have an idea or need help with a project? Tell me a little about it and I’ll get back to you.</p>
+
+            <div class="contact-methods">
+              <a href="mailto:jesusjhorman@gmail.com" class="contact-method link-email">
+                <span class="contact-method-icon"><i class="fas fa-envelope" aria-hidden="true"></i></span>
+                <span class="contact-method-copy">
+                  <span class="contact-method-label lang-es">Correo electrónico</span>
+                  <span class="contact-method-label lang-en" style="display:none">Email</span>
+                  <span class="contact-method-hint lang-es">Envíame los detalles de tu idea</span>
+                  <span class="contact-method-hint lang-en" style="display:none">Send me the details of your idea</span>
+                </span>
+                <i class="fas fa-arrow-up-right-from-square contact-method-arrow" aria-hidden="true"></i>
+              </a>
+              <a href="#" class="contact-method link-whatsapp" target="_blank" rel="noopener noreferrer" style="display:none">
+                <span class="contact-method-icon contact-whatsapp-icon"><i class="fab fa-whatsapp" aria-hidden="true"></i></span>
+                <span class="contact-method-copy">
+                  <span class="contact-method-label lang-es">WhatsApp</span>
+                  <span class="contact-method-label lang-en" style="display:none">WhatsApp</span>
+                  <span class="contact-method-hint lang-es">Conversemos directamente</span>
+                  <span class="contact-method-hint lang-en" style="display:none">Let’s chat directly</span>
+                </span>
+                <i class="fas fa-arrow-up-right-from-square contact-method-arrow" aria-hidden="true"></i>
+              </a>
             </div>
-            <div class="form-group">
-              <label for="email" class="lang-es">Email</label>
-              <label for="email" class="lang-en" style="display:none">Email</label>
-              <input type="email" id="email" name="email" placeholder="tu@email.com" required autocomplete="email">
+          </div>
+
+          <div class="contact-form-container">
+            <div class="contact-form-heading">
+              <h3 class="lang-es">Envíame un mensaje</h3>
+              <h3 class="lang-en" style="display:none">Send me a message</h3>
+              <p class="lang-es">Completa el formulario y te responderé pronto.</p>
+              <p class="lang-en" style="display:none">Fill out the form and I’ll get back to you soon.</p>
             </div>
-            <div class="form-group">
-              <label for="subject" class="lang-es">Asunto</label>
-              <label for="subject" class="lang-en" style="display:none">Subject</label>
-              <input type="text" id="subject" name="_subject" placeholder="Asunto del mensaje" required>
-            </div>
-            <div class="form-group">
-              <label for="message" class="lang-es">Mensaje</label>
-              <label for="message" class="lang-en" style="display:none">Message</label>
-              <textarea id="message" name="message" rows="5" placeholder="Tu mensaje..." required minlength="10"></textarea>
-            </div>
-            <input type="hidden" name="_captcha" value="false">
-            <button type="submit" class="btn btn-primary btn-full lang-es" aria-live="polite">
-              <span class="submit-text">Enviar Mensaje</span>
-              <span class="loading-text" style="display:none">Enviando...</span>
-            </button>
-            <button type="submit" class="btn btn-primary btn-full lang-en" style="display:none" aria-live="polite">
-              <span class="submit-text">Send Message</span>
-              <span class="loading-text" style="display:none">Sending...</span>
-            </button>
-          </form>
+            <form class="contact-form" action="https://formsubmit.co/jesusjhorman@gmail.com" method="POST" aria-label="Formulario de contacto">
+              <div class="form-group">
+                <label for="name" class="lang-es">Nombre completo</label>
+                <label for="name" class="lang-en" style="display:none">Full name</label>
+                <input type="text" id="name" name="name" placeholder="Tu nombre completo" required minlength="2" autocomplete="name">
+              </div>
+              <div class="form-group">
+                <label for="email" class="lang-es">Email</label>
+                <label for="email" class="lang-en" style="display:none">Email</label>
+                <input type="email" id="email" name="email" placeholder="tu@email.com" required autocomplete="email">
+              </div>
+              <div class="form-group contact-form-wide">
+                <label for="subject" class="lang-es">Asunto</label>
+                <label for="subject" class="lang-en" style="display:none">Subject</label>
+                <input type="text" id="subject" name="_subject" placeholder="Asunto del mensaje" required>
+              </div>
+              <div class="form-group contact-form-wide">
+                <label for="message" class="lang-es">Mensaje</label>
+                <label for="message" class="lang-en" style="display:none">Message</label>
+                <textarea id="message" name="message" rows="5" placeholder="Tu mensaje..." required minlength="10"></textarea>
+              </div>
+              <input type="hidden" name="_captcha" value="false">
+              <button type="submit" class="btn btn-primary btn-full contact-submit lang-es" aria-live="polite">
+                <span class="submit-text">Enviar mensaje <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
+                <span class="loading-text" style="display:none">Enviando...</span>
+              </button>
+              <button type="submit" class="btn btn-primary btn-full contact-submit lang-en" style="display:none" aria-live="polite">
+                <span class="submit-text">Send message <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
+                <span class="loading-text" style="display:none">Sending...</span>
+              </button>
+            </form>
+            <a href="#" class="contact-whatsapp-button link-whatsapp" target="_blank" rel="noopener noreferrer" style="display:none">
+              <i class="fab fa-whatsapp" aria-hidden="true"></i>
+              <span class="lang-es">Prefiero escribir por WhatsApp</span>
+              <span class="lang-en" style="display:none">I’d rather message on WhatsApp</span>
+              <i class="fas fa-arrow-up-right-from-square" aria-hidden="true"></i>
+            </a>
+          </div>
         </div>
       </div>
     </section>
@@ -238,6 +285,9 @@
           </a>
           <a href="https://www.linkedin.com/in/jhorman-jesus-castellanos-morales-245b97261" target="_blank" class="footer-social-link link-linkedin" rel="noopener noreferrer" aria-label="Visitar LinkedIn">
             <i class="fab fa-linkedin" aria-hidden="true"></i>
+          </a>
+          <a href="#" target="_blank" class="footer-social-link link-whatsapp" rel="noopener noreferrer" aria-label="Contactar por WhatsApp" style="display:none">
+            <i class="fab fa-whatsapp" aria-hidden="true"></i>
           </a>
           <a href="mailto:jesusjhorman@gmail.com" class="footer-social-link link-email" aria-label="Enviar correo">
             <i class="fas fa-envelope" aria-hidden="true"></i>

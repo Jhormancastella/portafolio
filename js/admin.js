@@ -62,11 +62,18 @@ async function loadProfile() {
 document.getElementById('profile-form').addEventListener('submit', async e => {
   e.preventDefault();
   const form = e.target;
+  const whatsappNumber = form.querySelector('[name="whatsapp_number"]').value.replace(/\D/g, '');
+  if (whatsappNumber && !/^[1-9]\d{6,14}$/.test(whatsappNumber)) {
+    showToast('Ingresa un número de WhatsApp válido con código de país (7 a 15 dígitos)', 'error');
+    return;
+  }
+
   const fields = ['name_es','name_en','subtitle_es','subtitle_en','title_es','title_en',
     'description_es','description_en','github_url','linkedin_url','email','logo_text',
-    'footer_subtitle_es','footer_subtitle_en'];
+    'footer_subtitle_es','footer_subtitle_en','whatsapp_number'];
   const data = {};
   fields.forEach(f => data[f] = form.querySelector(`[name="${f}"]`)?.value || '');
+  data.whatsapp_number = whatsappNumber;
   data.updated_at = new Date().toISOString();
 
   const { error } = await db.from('profile').update(data).neq('id', '00000000-0000-0000-0000-000000000000');
